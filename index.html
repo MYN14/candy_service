@@ -1,298 +1,277 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1919Plus | Descargas</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1919Plus | Descargas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow-x: hidden;
-    }
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
 
-    .bg-glow {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255,128,0,0.25), transparent 70%);
-      filter: blur(80px);
-      z-index: 0;
-      animation: moveGlow 10s infinite alternate ease-in-out;
-    }
+.container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,128,0,0.2);
+  width: 90%;
+  max-width: 420px;
+  margin: 20px;
+}
 
-    @keyframes moveGlow {
-      from { transform: translate(-100px, -100px); }
-      to { transform: translate(100px, 100px); }
-    }
+.logo {
+  width: 130px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,128,0,0.4);
+}
 
-    .container {
-      position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 128, 0, 0.2);
-      border-radius: 20px;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255,128,0,0.2);
-      margin-top: 50px;
-      width: 90%;
-      max-width: 400px;
-    }
+h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff8000, #ff4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
 
-    .logo {
-      width: 120px;
-      margin-bottom: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
-    }
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ff8000, #ff4500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
+.menu button, .submenu button {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ff6a00, #ff4500);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  transition: all 0.3s;
+}
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+.menu button:hover, .submenu button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(255,140,0,0.6);
+}
 
-    .menu button, .submenu button {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      padding: 16px 20px;
-      border-radius: 12px;
-      background: linear-gradient(90deg, #ff6a00, #ff4500);
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-      width: 100%;
-      text-align: left;
-    }
+.submenu {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 5px;
+  padding-left: 10px;
+}
 
-    .menu button:hover, .submenu button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
-    }
+footer {
+  margin-top: 20px;
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+}
 
-    .submenu {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 5px;
-      padding-left: 10px;
-    }
+/* PDF Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
 
-    footer {
-      margin-top: 20px;
-      color: #888;
-      font-size: 0.9rem;
-      text-align: center;
-    }
+.modal-content {
+  background: rgba(0,0,0,0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 95%;
+  max-width: 500px;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    /* PDF Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 10px;
-    }
+.modal canvas {
+  flex: 1;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
 
-    .modal-content {
-      background: rgba(0,0,0,0.95);
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      width: 90%;
-      max-width: 500px;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.pdf-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
 
-    .modal canvas {
-      flex: 1;
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 5px;
-    }
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: rgba(255,128,0,0.8);
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
+  z-index: 10;
+}
 
-    .pdf-controls {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding: 5px;
-      box-sizing: border-box;
-    }
+.close-btn:hover {
+  background: rgba(255,80,0,1);
+}
 
-    .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      background: rgba(255,128,0,0.8);
-      border: none;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      padding: 5px 10px;
-    }
+/* WhatsApp support button */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  text-decoration: none;
+  z-index: 1001;
+}
 
-    .close-btn:hover {
-      background: rgba(255,80,0,1);
-    }
+.whatsapp-btn:hover {
+  background: #1ebe57;
+  text-decoration: none;
+}
 
-    /* WhatsApp support button */
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 50px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-      text-decoration: none;
-      z-index: 1001;
-    }
-
-    .whatsapp-btn:hover {
-      background: #1ebe57;
-    }
-
-    @media (max-width: 480px) {
-      .container { padding: 20px 15px; }
-      h1 { font-size: 1.5rem; }
-      .menu button, .submenu button { padding: 14px 16px; font-size: 0.95rem; }
-    }
-  </style>
+@media (max-width: 480px) {
+  .container { padding: 20px 15px; }
+  h1 { font-size: 1.5rem; }
+  .menu button, .submenu button { padding: 14px 16px; font-size: 0.95rem; }
+}
+</style>
 </head>
 <body>
-  <div class="bg-glow"></div>
 
-  <div class="container">
-    <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" class="logo">
-    <h1>Centro de Descargas</h1>
+<div class="container">
+  <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" class="logo">
+  <h1>Centro de Descargas</h1>
 
-    <div class="menu">
-      <button onclick="abrirPDF()">⚠️ ¡Importante leer!</button>
-
-      <button onclick="toggleSubmenu()">📱 Aplicaciones ▼</button>
-      <div class="submenu" id="submenu">
-        <button onclick="descargar('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=1')">📺 Spinning TV</button>
-        <button onclick="descargar('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=1')">📺 Spinning IBO Player</button>
-        <button onclick="descargar('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=1')">📺 Spinning MATE</button>
-        <button onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">💻 APP Apple y PC</button>
-      </div>
+  <div class="menu">
+    <button onclick="abrirPDF()">⚠️ ¡Importante leer!</button>
+    <button onclick="toggleSubmenu()">📱 Aplicaciones ▼</button>
+    <div class="submenu" id="submenu">
+      <button onclick="descargar('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=1')">📺 Spinning TV</button>
+      <button onclick="descargar('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=1')">📺 Spinning IBO Player</button>
+      <button onclick="descargar('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=1')">📺 Spinning MATE</button>
+      <button onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">💻 APP Apple y PC</button>
     </div>
   </div>
+</div>
 
-  <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
+<footer>© 2025 1919Plus | Todos los derechos reservados</footer>
 
-  <a href="https://wa.me/34603102438?text=Hola,%20necesito%20ayuda" target="_blank" class="whatsapp-btn">
-    🟢 WhatsApp
-  </a>
+<a href="https://wa.me/34603102438?text=Hola,%20necesito%20ayuda" target="_blank" class="whatsapp-btn">
+  <i class="fab fa-whatsapp"></i> CONTACTA
+</a>
 
-  <!-- Modal PDF -->
-  <div class="modal" id="visorPDF">
-    <div class="modal-content">
-      <button class="close-btn" onclick="cerrarPDF()">✖</button>
-      <canvas id="pdfCanvas"></canvas>
-      <div class="pdf-controls">
-        <button onclick="prevPage()">◀ Anterior</button>
-        <span id="pageNum">1 / 1</span>
-        <button onclick="nextPage()">Siguiente ▶</button>
-      </div>
+<!-- PDF Modal -->
+<div class="modal" id="visorPDF">
+  <div class="modal-content">
+    <button class="close-btn" onclick="cerrarPDF()">✖</button>
+    <canvas id="pdfCanvas"></canvas>
+    <div class="pdf-controls">
+      <button onclick="prevPage()">◀ Anterior</button>
+      <span id="pageNum">1 / 1</span>
+      <button onclick="nextPage()">Siguiente ▶</button>
     </div>
   </div>
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.114/pdf.min.js"></script>
-  <script>
-    let pdfDoc = null, pageNum = 1;
-    const canvas = document.getElementById('pdfCanvas');
-    const ctx = canvas.getContext('2d');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.114/pdf.min.js"></script>
+<script>
+let pdfDoc = null, pageNum = 1;
+const canvas = document.getElementById('pdfCanvas');
+const ctx = canvas.getContext('2d');
 
-    async function abrirPDF() {
-      const url = 'https://github.com/MYN14/candy_service/raw/main/FAQ.pdf';
-      pdfDoc = await pdfjsLib.getDocument(url).promise;
-      pageNum = 1;
-      document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
-      renderPage();
-      document.getElementById('visorPDF').style.display = 'flex';
-    }
+async function abrirPDF() {
+  const url = 'https://github.com/MYN14/candy_service/raw/main/FAQ.pdf';
+  pdfDoc = await pdfjsLib.getDocument(url).promise;
+  pageNum = 1;
+  document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
+  renderPage();
+  document.getElementById('visorPDF').style.display = 'flex';
+}
 
-    function cerrarPDF() {
-      document.getElementById('visorPDF').style.display = 'none';
-      pdfDoc = null;
-    }
+function cerrarPDF() {
+  document.getElementById('visorPDF').style.display = 'none';
+  pdfDoc = null;
+}
 
-    async function renderPage() {
-      if (!pdfDoc) return;
-      const page = await pdfDoc.getPage(pageNum);
-      const viewport = page.getViewport({ scale: 1.2 });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      await page.render({ canvasContext: ctx, viewport }).promise;
-      document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
-    }
+async function renderPage() {
+  if (!pdfDoc) return;
+  const page = await pdfDoc.getPage(pageNum);
+  const viewport = page.getViewport({ scale: 1.2 });
+  canvas.height = viewport.height;
+  canvas.width = viewport.width;
+  await page.render({ canvasContext: ctx, viewport }).promise;
+  document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
+}
 
-    function nextPage() { if (pageNum < pdfDoc.numPages) { pageNum++; renderPage(); } }
-    function prevPage() { if (pageNum > 1) { pageNum--; renderPage(); } }
+function nextPage() { if (pageNum < pdfDoc.numPages) { pageNum++; renderPage(); } }
+function prevPage() { if (pageNum > 1) { pageNum--; renderPage(); } }
 
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
-    }
+function toggleSubmenu() {
+  const submenu = document.getElementById('submenu');
+  submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
+}
 
-    function descargar(url) {
-      if (url.includes('dropbox')) {
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = '';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      } else {
-        window.open(url,'_blank');
-      }
-      alert('✅ Descarga iniciada');
-    }
-  </script>
+function descargar(url) {
+  if (url.includes('dropbox')) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    window.open(url,'_blank');
+  }
+  alert('✅ Descarga iniciada');
+}
+</script>
 </body>
 </html>
