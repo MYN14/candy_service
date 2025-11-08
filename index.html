@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1919Plus | Descargas</title>
 
-  <!-- 🧭 Metadatos -->
   <meta name="description" content="Centro de descargas oficial de 1919Plus. Descarga Spinning TV, IBO Player, y más.">
   <meta property="og:title" content="1919Plus | Centro de Descargas">
   <meta property="og:description" content="Descarga tus aplicaciones oficiales de Spinning TV e IBO Player aquí.">
   <meta property="og:image" content="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://1919plus.com/descargas">
 
   <link rel="icon" href="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" type="image/png">
 
@@ -30,7 +28,6 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      touch-action: none;
     }
 
     .bg-glow {
@@ -66,8 +63,6 @@
       margin-bottom: 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
     }
 
     h1 {
@@ -78,21 +73,12 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 25px;
       letter-spacing: 1px;
-      opacity: 0;
-      animation: fadeIn 1.2s ease 0.2s forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .menu {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      opacity: 0;
-      animation: fadeIn 1.2s ease 0.4s forwards;
     }
 
     .menu a, .menu button {
@@ -230,26 +216,6 @@
     .close-btn:hover {
       background: rgba(255,80,0,1);
     }
-
-    /* 📱 Ajustes móviles */
-    @media (max-width: 768px) {
-      body {
-        overflow: hidden;
-        touch-action: auto;
-      }
-      .container {
-        width: 90%;
-        padding: 30px 25px;
-      }
-      .menu a, .menu button {
-        font-size: 0.9rem;
-        padding: 12px 15px;
-      }
-      .modal-content {
-        width: 95%;
-        height: 85%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -261,10 +227,10 @@
 
     <div class="menu">
       <button onclick="abrirPDF()">⚠️ ¡Importante leer!</button>
-      <a href="https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=5r8jyp2b&dl=0">📱📺 Descargar Spinning TV</a>
-      <a href="https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=agfl45x6&dl=0">📱📺 Descargar Spinning IBO Player</a>
-      <a href="https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=l6jo0ike&dl=0">📱📺 Descargar Spinning MATE</a>
-      <a href="https://apps.apple.com/us/app/hot-player/id6695762404">📱 APP para Apple y PC 💻</a>
+      <a href="#" onclick="descargarApp('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&dl=1')">📱📺 Descargar Spinning TV</a>
+      <a href="#" onclick="descargarApp('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&dl=1')">📱📺 Descargar Spinning IBO Player</a>
+      <a href="#" onclick="descargarApp('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&dl=1')">📱📺 Descargar Spinning MATE</a>
+      <a href="https://apps.apple.com/us/app/hot-player/id6695762404" target="_blank">📱 APP para Apple y PC 💻</a>
     </div>
 
     <a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda%20con%20Spinning%20TV" target="_blank">💬 Soporte Técnico</a>
@@ -281,25 +247,17 @@
   </div>
 
   <script>
-    // 🎬 Glow dinámico solo en PC
+    // Glow animado
     const glow = document.getElementById('glow');
-    if (window.innerWidth > 768) {
-      document.addEventListener('mousemove', e => {
-        const x = (e.clientX / window.innerWidth) * 100;
-        const y = (e.clientY / window.innerHeight) * 100;
-        glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
-      });
-    } else {
-      glow.style.transform = "translate(0, 0)";
-    }
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
+    });
 
-    // 🧾 Modal PDF (en móvil abre en pestaña nueva)
+    // Abrir PDF en visor modal
     function abrirPDF() {
       const rawPdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
-      if (window.innerWidth <= 768) {
-        window.open(rawPdfUrl, "_blank");
-        return;
-      }
       const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
       document.getElementById('pdfFrame').src = viewerUrl;
       document.getElementById('visorPDF').style.display = 'flex';
@@ -309,6 +267,16 @@
       const modal = document.getElementById('visorPDF');
       modal.style.display = 'none';
       document.getElementById('pdfFrame').src = '';
+    }
+
+    // Forzar descarga directa desde Dropbox
+    function descargarApp(url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = '';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 </body>
