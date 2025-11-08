@@ -2,5 +2,5 @@
 
 Puedes visualizar el PDF haciendo clic aquí:
 
-[Ver PDF](https://github.com/USUARIO/REPO/raw/main/archivo.pdf)
+[Ver PDF]([https://github.com/USUARIO/REPO/raw/main/archivo.pdf](https://github.com/MYN14/candy_service/blob/main/FAQ%20Candy%20v2.pdf))
 
