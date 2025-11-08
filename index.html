@@ -21,7 +21,6 @@
       overflow: hidden;
     }
 
-    /* Efecto de fondo animado */
     .bg-glow {
       position: absolute;
       width: 500px;
@@ -37,7 +36,6 @@
       to { transform: translate(100px, 100px); }
     }
 
-    /* Contenedor principal */
     .container {
       position: relative;
       z-index: 1;
@@ -56,7 +54,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Logo */
     .logo {
       width: 150px;
       margin-bottom: 20px;
@@ -64,7 +61,6 @@
       box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
     }
 
-    /* Título */
     h1 {
       font-size: 2rem;
       font-weight: 700;
@@ -75,14 +71,13 @@
       letter-spacing: 1px;
     }
 
-    /* Botones */
     .menu {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
 
-    .menu a {
+    .menu a, .menu button {
       text-decoration: none;
       color: #fff;
       font-weight: 600;
@@ -93,9 +88,12 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
     }
 
-    .menu a::before {
+    .menu a::before, .menu button::before {
       content: "";
       position: absolute;
       top: 0;
@@ -106,21 +104,94 @@
       transition: 0.5s;
     }
 
-    .menu a:hover::before {
+    .menu a:hover::before, .menu button:hover::before {
       left: 100%;
     }
 
-    .menu a:hover {
+    .menu a:hover, .menu button:hover {
       transform: translateY(-3px);
       box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
     }
 
-    /* Footer */
     footer {
       position: absolute;
       bottom: 20px;
       color: #888;
       font-size: 0.9rem;
+    }
+
+    /* Modal del visor PDF */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Fondo animado dentro del modal */
+    .modal::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,128,0,0.3), transparent 70%);
+      filter: blur(100px);
+      animation: moveModalGlow 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes moveModalGlow {
+      from { transform: translate(-200px, -100px); }
+      to { transform: translate(200px, 150px); }
+    }
+
+    .modal-content {
+      width: 80%;
+      height: 80%;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 128, 0, 0.6);
+      z-index: 1010;
+      animation: fadeInModal 0.5s ease-out;
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: rgba(255,128,0,0.8);
+      border: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      padding: 5px 10px;
+      transition: background 0.3s;
+      z-index: 1020;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,80,0,1);
     }
   </style>
 </head>
@@ -128,11 +199,11 @@
   <div class="bg-glow"></div>
 
   <div class="container">
-    <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg" class="logo">
+    <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" class="logo">
     <h1>Centro de Descargas</h1>
 
     <div class="menu">
-      <a href="https://github.com/MYN14/candy_service/blob/main/verpdf.html">📖 ¡Importante leer!⚠️ </a>
+      <button onclick="abrirPDF()">📖 ¡Importante leer!⚠️</button>
       <a href="https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=5r8jyp2b&dl=0=">📱📺 Descargar Spinning TV</a>
       <a href="https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=agfl45x6&dl=0">📱📺Descargar Spinning IBO Player</a>
       <a href="https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=l6jo0ike&dl=0">📱📺Descargar Spinning MATE</a>
@@ -141,6 +212,27 @@
   </div>
 
   <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
+
+  <!-- Modal -->
+  <div class="modal" id="visorPDF">
+    <div class="modal-content">
+      <button class="close-btn" onclick="cerrarPDF()">✖</button>
+      <iframe id="pdfFrame" src=""></iframe>
+    </div>
+  </div>
+
+  <script>
+    function abrirPDF() {
+      const pdfUrl = "https://github.com/MYN14/candy_service/raw/main/documento.pdf"; 
+      document.getElementById('pdfFrame').src = pdfUrl;
+      document.getElementById('visorPDF').style.display = 'flex';
+    }
+
+    function cerrarPDF() {
+      const modal = document.getElementById('visorPDF');
+      modal.style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+  </script>
 </body>
 </html>
-
