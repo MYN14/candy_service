@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1919Plus | Descargas</title>
 
-  <!-- 🧭 Metadatos para compartir -->
+  <!-- 🧭 Metadatos -->
   <meta name="description" content="Centro de descargas oficial de 1919Plus. Descarga Spinning TV, IBO Player, y más.">
   <meta property="og:title" content="1919Plus | Centro de Descargas">
   <meta property="og:description" content="Descarga tus aplicaciones oficiales de Spinning TV e IBO Player aquí.">
@@ -30,6 +30,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      touch-action: none;
     }
 
     .bg-glow {
@@ -130,14 +131,34 @@
       box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
     }
 
+    .support {
+      margin-top: 25px;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      padding: 12px 22px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .support:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
+    }
+
     footer {
       position: absolute;
       bottom: 20px;
       color: #888;
       font-size: 0.9rem;
+      text-align: center;
+      width: 100%;
     }
 
-    /* Modal del visor PDF */
+    /* Modal PDF */
     .modal {
       display: none;
       position: fixed;
@@ -209,6 +230,26 @@
     .close-btn:hover {
       background: rgba(255,80,0,1);
     }
+
+    /* 📱 Ajustes móviles */
+    @media (max-width: 768px) {
+      body {
+        overflow: hidden;
+        touch-action: auto;
+      }
+      .container {
+        width: 90%;
+        padding: 30px 25px;
+      }
+      .menu a, .menu button {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+      }
+      .modal-content {
+        width: 95%;
+        height: 85%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -219,12 +260,14 @@
     <h1>Centro de Descargas</h1>
 
     <div class="menu">
-      <button onclick="abrirPDF()"> ⚠️ ¡Importante leer!</button>
+      <button onclick="abrirPDF()">⚠️ ¡Importante leer!</button>
       <a href="https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=5r8jyp2b&dl=0">📱📺 Descargar Spinning TV</a>
       <a href="https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=agfl45x6&dl=0">📱📺 Descargar Spinning IBO Player</a>
       <a href="https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=l6jo0ike&dl=0">📱📺 Descargar Spinning MATE</a>
       <a href="https://apps.apple.com/us/app/hot-player/id6695762404">📱 APP para Apple y PC 💻</a>
     </div>
+
+    <a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda%20con%20Spinning%20TV" target="_blank">💬 Soporte Técnico</a>
   </div>
 
   <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
@@ -238,17 +281,25 @@
   </div>
 
   <script>
-    // 🎬 Glow dinámico que sigue el cursor
+    // 🎬 Glow dinámico solo en PC
     const glow = document.getElementById('glow');
-    document.addEventListener('mousemove', e => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
-    });
+    if (window.innerWidth > 768) {
+      document.addEventListener('mousemove', e => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
+      });
+    } else {
+      glow.style.transform = "translate(0, 0)";
+    }
 
-    // 🧾 Modal PDF
+    // 🧾 Modal PDF (en móvil abre en pestaña nueva)
     function abrirPDF() {
       const rawPdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
+      if (window.innerWidth <= 768) {
+        window.open(rawPdfUrl, "_blank");
+        return;
+      }
       const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
       document.getElementById('pdfFrame').src = viewerUrl;
       document.getElementById('visorPDF').style.display = 'flex';
