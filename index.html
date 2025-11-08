@@ -1,29 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Descarga de Apps</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1919Plus | Descargas</title>
   <style>
-    body { font-family: Arial; background: #f7f7f7; text-align: center; padding: 20px; }
-    h1 { color: #333; }
-    .menu { margin-top: 30px; }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
-    .btn:hover { background: #0056b3; }
+
+    /* Efecto de fondo animado */
+    .bg-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,128,0,0.25), transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      animation: moveGlow 10s infinite alternate ease-in-out;
+    }
+
+    @keyframes moveGlow {
+      from { transform: translate(-100px, -100px); }
+      to { transform: translate(100px, 100px); }
+    }
+
+    /* Contenedor principal */
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 128, 0, 0.2);
+      border-radius: 20px;
+      padding: 40px 50px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,128,0,0.2);
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo */
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
+    }
+
+    /* Título */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff8000, #ff4500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Botones */
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 15px 20px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff6a00, #ff4500);
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .menu a:hover::before {
+      left: 100%;
+    }
+
+    .menu a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      position: absolute;
+      bottom: 20px;
+      color: #888;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Menú de Descarga de Apps</h1>
-  <div class="menu">
-    <a href="URL_DE_TU_APP1.apk" class="btn">Descargar App 1</a>
-    <a href="URL_DE_TU_APP2.apk" class="btn">Descargar App 2</a>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+    <img src="tu-logo.png" alt="Logo 1919Plus" class="logo">
+    <h1>Centro de Descargas</h1>
+
+    <div class="menu">
+      <a href="https://tuenlace1.com" target="_blank">📱 Descargar App Android</a>
+      <a href="https://tuenlace2.com" target="_blank">💻 Descargar App para PC</a>
+      <a href="https://tuenlace3.com" target="_blank">📖 Ver Manual de Usuario</a>
+    </div>
   </div>
+
+  <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
 </body>
 </html>
+
