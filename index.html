@@ -9,6 +9,8 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
+* { box-sizing: border-box; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
@@ -25,12 +27,13 @@ body {
 }
 
 .bg-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255,128,0,0.25), transparent 70%);
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,128,0,0.2), transparent 70%);
   filter: blur(80px);
   z-index: 0;
+  pointer-events: none;
   transition: transform 0.2s ease-out;
 }
 
@@ -41,47 +44,47 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 128, 0, 0.2);
   border-radius: 20px;
-  padding: 30px 25px;
+  padding: 25px;
   text-align: center;
   box-shadow: 0 0 30px rgba(255,128,0,0.2);
-  width: 90%;
-  max-width: 400px;
-  margin-top: 40px;
-  margin-bottom: 80px;
+  width: 95%;
+  max-width: 360px;
+  margin: 20px 0 100px 0;
 }
 
 .logo {
-  width: 120px;
-  margin-bottom: 15px;
+  width: 100px;
+  margin-bottom: 10px;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   background: linear-gradient(90deg, #ff8000, #ff4500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   letter-spacing: 1px;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* Botones y submenú */
 .menu a, .menu button, .submenu-btn {
   text-decoration: none;
   color: #fff;
   font-weight: 600;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 12px;
   background: linear-gradient(90deg, #ff6a00, #ff4500);
   box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, box-shadow 0.6s ease-in-out;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -91,61 +94,56 @@ h1 {
   width: 100%;
 }
 
+/* Brillo animado efecto premium */
+.menu a::after, .menu button::after, .submenu-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.0) 60%);
+  transform: rotate(45deg) translate(-200%, -200%);
+  transition: all 0.7s ease;
+}
+
+.menu a:hover::after, .menu button:hover::after, .submenu-btn:hover::after {
+  transform: rotate(45deg) translate(200%, 200%);
+}
+
 .menu a:hover, .menu button:hover, .submenu-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
 }
 
-/* Submenú tipo acordeón con gradiente animado */
-.submenu {
-  position: relative;
-  width: 100%;
-}
-
+/* Submenú acordeón */
+.submenu { width: 100%; }
 .submenu-content {
   max-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  gap: 10px;
-  transition: max-height 0.5s ease, padding 0.5s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 0 rgba(255, 128, 0, 0);
+  gap: 8px;
+  margin-top: 4px;
+  transition: max-height 0.5s ease, padding 0.5s ease;
 }
-
-.submenu-content.show {
-  max-height: 500px;
-  padding-bottom: 5px;
-  box-shadow: 0 10px 25px rgba(255, 128, 0, 0.4);
-  background: linear-gradient(90deg, rgba(255,110,0,0.1), rgba(255,70,0,0.1));
-  border-radius: 10px;
-}
-
+.submenu-content.show { max-height: 400px; padding-bottom:5px; }
 .submenu-content a {
-  padding: 12px 16px;
-  background: linear-gradient(90deg, #ff6a00, #ff4500);
+  padding: 10px 14px;
   border-radius: 10px;
+  background: linear-gradient(90deg, #ff6a00, #ff4500);
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-weight: 600;
-  transition: all 0.3s ease;
 }
-
 .submenu-content a:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255,140,0,0.5);
 }
+.submenu-btn .arrow { float: right; transition: transform 0.3s ease; }
+.submenu-open .arrow { transform: rotate(180deg); }
 
-/* Flecha giratoria */
-.submenu-btn .arrow {
-  float: right;
-  transition: transform 0.3s ease;
-}
-.submenu-open .arrow {
-  transform: rotate(180deg);
-}
-
-/* Botón flotante soporte WhatsApp */
+/* Soporte WhatsApp */
 .support {
   position: fixed;
   bottom: 15px;
@@ -154,37 +152,28 @@ h1 {
   color: #fff;
   text-decoration: none;
   background: linear-gradient(90deg, #25D366, #128C7E);
-  padding: 14px 20px;
+  padding: 12px 18px;
   border-radius: 50px;
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.support:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(37,211,102,0.9); }
 
-.support:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
-}
-
-footer {
-  color: #888;
-  font-size: 0.8rem;
-  text-align: center;
-  margin-top: 10px;
-}
+footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 10px; }
 
 /* Toast descarga */
 .toast {
   position: fixed;
   bottom: 70px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(20px);
   background: #ff6a00;
   padding: 10px 20px;
   border-radius: 25px;
-  box-shadow: 0 0 15px rgba(255, 110, 0, 0.5);
+  box-shadow: 0 0 15px rgba(255,110,0,0.5);
   font-weight: 600;
   opacity: 0;
   pointer-events: none;
@@ -207,59 +196,38 @@ footer {
   overflow: hidden;
   touch-action: pan-y;
 }
-
 .modal::before {
   content: "";
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255,128,0,0.3), transparent 70%);
-  filter: blur(80px);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255,128,0,0.2), transparent 70%);
+  filter: blur(70px);
   animation: moveModalGlow 8s infinite alternate ease-in-out;
 }
-
-@keyframes moveModalGlow {
-  from { transform: translate(-150px, -80px); }
-  to { transform: translate(150px, 120px); }
-}
+@keyframes moveModalGlow { from {transform: translate(-120px,-80px);} to {transform: translate(120px,100px);} }
 
 .modal-content {
   width: 90%;
-  height: 80%;
-  background: rgba(0, 0, 0, 0.9);
+  height: 75%;
+  background: rgba(0,0,0,0.9);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 30px rgba(255, 128, 0, 0.6);
+  box-shadow: 0 0 25px rgba(255,128,0,0.6);
   z-index: 1010;
   touch-action: pan-y;
 }
-
-.modal-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
+.modal-content iframe { width: 100%; height: 100%; border: none; }
 .close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
+  position: absolute; top: 8px; right: 12px;
   background: rgba(255,128,0,0.8);
-  border: none;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 5px 8px;
-  transition: background 0.3s;
-  z-index: 1020;
+  border: none; color: white; font-size: 18px;
+  font-weight: bold; cursor: pointer;
+  border-radius: 5px; padding: 5px 8px;
+  transition: background 0.3s; z-index:1020;
 }
-
-.close-btn:hover {
-  background: rgba(255,80,0,1);
-}
+.close-btn:hover { background: rgba(255,80,0,1); }
 
 </style>
 </head>
@@ -279,10 +247,10 @@ footer {
         📱 Aplicaciones <span class="arrow">▼</span>
       </button>
       <div class="submenu-content" id="appsSubmenu">
-        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&dl=1')">📺 Spinning TV</a>
-        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&dl=1')">📺 Spinning IBO Player</a>
-        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&dl=1')">📺 Spinning MATE</a>
-        <a href="https://apps.apple.com/us/app/hot-player/id6695762404" target="_blank">💻 APP para Apple y PC</a>
+        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=1')">📺 Spinning TV</a>
+        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=1')">📺 Spinning IBO Player</a>
+        <a href="#" onclick="descargarApp(this, 'https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=1')">📺 Spinning MATE</a>
+        <a href="https://apps.apple.com/us/app/hot-player/id6695762404" target="_blank">💻 APP Apple y PC</a>
       </div>
     </div>
   </div>
@@ -307,82 +275,52 @@ const glow = document.getElementById('glow');
 document.addEventListener('mousemove', e => {
   const x = (e.clientX / window.innerWidth) * 100;
   const y = (e.clientY / window.innerHeight) * 100;
-  glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
+  glow.style.transform = `translate(${x-50}vw, ${y-50}vh)`;
 });
 
-// PDF Modal con swipe
+// PDF Modal
 const modal = document.getElementById('visorPDF');
 const modalContent = document.getElementById('modalPDF');
-let startY = 0, currentY = 0, isDragging = false;
+let startY=0, currentY=0, isDragging=false;
 
-function abrirPDF() {
-  const rawPdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
-  const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
-  document.getElementById('pdfFrame').src = viewerUrl;
-  modal.style.display = 'flex';
+function abrirPDF(){
+  const rawPdfUrl="https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
+  const viewerUrl=`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
+  document.getElementById('pdfFrame').src=viewerUrl;
+  modal.style.display='flex';
 }
 
-function cerrarPDF() {
-  modal.style.display = 'none';
-  document.getElementById('pdfFrame').src = '';
-  modalContent.style.transform = 'translateY(0)';
+function cerrarPDF(){
+  modal.style.display='none';
+  document.getElementById('pdfFrame').src='';
+  modalContent.style.transform='translateY(0)';
 }
 
-modalContent.addEventListener('touchstart', e => {
-  startY = e.touches[0].clientY;
-  isDragging = true;
-});
-modalContent.addEventListener('touchmove', e => {
-  if(!isDragging) return;
-  currentY = e.touches[0].clientY - startY;
-  if(currentY > 0) modalContent.style.transform = `translateY(${currentY}px)`;
-});
-modalContent.addEventListener('touchend', e => {
-  isDragging = false;
-  if(currentY > 100){
-    cerrarPDF();
-  } else {
-    modalContent.style.transform = 'translateY(0)';
-  }
-  currentY = 0;
-});
+modalContent.addEventListener('touchstart', e => { startY=e.touches[0].clientY; isDragging=true; });
+modalContent.addEventListener('touchmove', e => { if(!isDragging)return; currentY=e.touches[0].clientY-startY; if(currentY>0) modalContent.style.transform=`translateY(${currentY}px)`; });
+modalContent.addEventListener('touchend', e => { isDragging=false; if(currentY>100) cerrarPDF(); else modalContent.style.transform='translateY(0)'; currentY=0; });
 
-// Submenú tipo acordeón
-function toggleSubmenu(id, button) {
-  const submenu = document.getElementById(id);
-  const isOpen = submenu.classList.contains('show');
-  if(isOpen){
-    submenu.classList.remove('show');
-    button.classList.remove('submenu-open');
-  } else {
-    submenu.classList.add('show');
-    button.classList.add('submenu-open');
-    submenu.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+// Submenú acordeón
+function toggleSubmenu(id, button){
+  const submenu=document.getElementById(id);
+  const isOpen=submenu.classList.contains('show');
+  if(isOpen){submenu.classList.remove('show'); button.classList.remove('submenu-open');}
+  else{submenu.classList.add('show'); button.classList.add('submenu-open'); submenu.scrollIntoView({behavior:'smooth', block:'center'});}
 }
 
-// Descargar APK con efecto y toast
-function descargarApp(btn, url) {
-  // Animación pulsado
-  btn.style.transform = 'scale(0.95)';
+// Descargar APK con animación y toast
+function descargarApp(btn, url){
+  btn.style.transform='scale(0.95)';
   setTimeout(()=>{btn.style.transform='scale(1)';},150);
 
-  // Toast
-  const toast = document.getElementById('toast');
-  toast.style.opacity = 1;
-  toast.style.transform = 'translateX(-50%) translateY(0)';
-  setTimeout(()=>{
-    toast.style.opacity = 0;
-    toast.style.transform = 'translateX(-50%) translateY(20px)';
-  },2000);
+  const toast=document.getElementById('toast');
+  toast.style.opacity=1;
+  toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{toast.style.opacity=0; toast.style.transform='translateX(-50%) translateY(20px)';},2000);
 
-  // Descargar APK
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = '';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  const link=document.createElement('a');
+  link.href=url; link.download=''; document.body.appendChild(link);
+  link.click(); document.body.removeChild(link);
 }
 </script>
 </body>
