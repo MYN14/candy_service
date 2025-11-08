@@ -16,58 +16,59 @@ body {
   color: #fff;
   min-height: 100vh;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 
+/* Contenedor principal */
 .container {
-  position: relative;
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255,255,255,0.05);
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 30px 20px;
+  padding: 20px;
+  margin: 20px 0;
+  width: 95%;
+  max-width: 420px;
   text-align: center;
   box-shadow: 0 0 30px rgba(255,128,0,0.2);
-  width: 90%;
-  max-width: 420px;
-  margin: 20px;
 }
 
+/* Logo */
 .logo {
-  width: 130px;
-  margin-bottom: 20px;
+  width: 120px;
+  margin-bottom: 15px;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(255,128,0,0.4);
 }
 
+/* Título */
 h1 {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #ff8000, #ff4500);
+  background: linear-gradient(90deg,#ff8000,#ff4500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   letter-spacing: 1px;
 }
 
-.menu {
+/* Menú y submenú */
+.menu, .submenu {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .menu button, .submenu button {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-  padding: 16px 20px;
+  font-size: 1rem;
+  padding: 18px 20px;
   border-radius: 12px;
-  background: linear-gradient(90deg, #ff6a00, #ff4500);
-  box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-  cursor: pointer;
   border: none;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg,#ff6a00,#ff4500);
+  box-shadow: 0 0 15px rgba(255,140,0,0.4);
+  cursor: pointer;
   text-align: left;
   transition: all 0.3s;
 }
@@ -79,16 +80,15 @@ h1 {
 
 .submenu {
   display: none;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 5px;
+  gap: 10px;
   padding-left: 10px;
 }
 
+/* Footer */
 footer {
-  margin-top: 20px;
+  margin-top: 10px;
+  font-size: 0.85rem;
   color: #888;
-  font-size: 0.9rem;
   text-align: center;
 }
 
@@ -99,53 +99,60 @@ footer {
   top:0; left:0;
   width:100%;
   height:100%;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.95);
   z-index: 1000;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 10px;
+  padding: 5px;
 }
 
 .modal-content {
   background: rgba(0,0,0,0.95);
   border-radius: 12px;
-  overflow: hidden;
-  position: relative;
   width: 95%;
-  max-width: 500px;
-  height: 85%;
+  max-width: 450px;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
-.modal-content iframe {
+/* Canvas PDF ajustable al alto disponible */
+.modal-content canvas {
   width: 100%;
-  height: 100%;
-  border: none;
+  flex: 1;
+  border-radius: 8px;
+  margin-bottom: 5px;
 }
 
+/* Botones de navegación PDF */
+.pdf-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+}
+
+/* Botón cerrar */
 .close-btn {
   position: absolute;
   top: 5px;
   right: 10px;
   background: rgba(255,128,0,0.8);
-  border: none;
   color: white;
+  border: none;
+  border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 5px;
   padding: 5px 10px;
   z-index: 10;
 }
 
-.close-btn:hover {
-  background: rgba(255,80,0,1);
-}
+.close-btn:hover { background: rgba(255,80,0,1); }
 
-/* WhatsApp support button */
+/* Botón WhatsApp flotante */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
@@ -154,24 +161,21 @@ footer {
   color: white;
   padding: 12px 16px;
   border-radius: 50px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  font-weight: bold;
   text-decoration: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
   z-index: 1001;
 }
 
-.whatsapp-btn:hover {
-  background: #1ebe57;
-  text-decoration: none;
-}
+.whatsapp-btn:hover { background: #1ebe57; text-decoration: none; }
 
-@media (max-width: 480px) {
-  .container { padding: 20px 15px; }
-  h1 { font-size: 1.5rem; }
-  .menu button, .submenu button { padding: 14px 16px; font-size: 0.95rem; }
+@media(max-width:480px){
+  .container { padding: 15px; }
+  h1 { font-size:1.5rem; }
+  .menu button,.submenu button{padding:16px 18px;font-size:0.95rem;}
 }
 </style>
 </head>
@@ -199,46 +203,67 @@ footer {
   <i class="fab fa-whatsapp"></i> CONTACTA
 </a>
 
-<!-- Modal PDF -->
+<!-- PDF Modal -->
 <div class="modal" id="visorPDF">
   <div class="modal-content">
     <button class="close-btn" onclick="cerrarPDF()">✖</button>
-    <iframe id="pdfFrame" src=""></iframe>
+    <canvas id="pdfCanvas"></canvas>
+    <div class="pdf-controls">
+      <button onclick="prevPage()">◀ Anterior</button>
+      <span id="pageNum">1 / 1</span>
+      <button onclick="nextPage()">Siguiente ▶</button>
+    </div>
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.114/pdf.min.js"></script>
 <script>
-function abrirPDF() {
-  const url = 'https://github.com/MYN14/candy_service/raw/main/FAQ.pdf';
-  const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(url)}`;
-  document.getElementById('pdfFrame').src = viewerUrl;
-  document.getElementById('visorPDF').style.display = 'flex';
+let pdfDoc=null,pageNum=1;
+const canvas=document.getElementById('pdfCanvas');
+const ctx=canvas.getContext('2d');
+
+async function abrirPDF(){
+  const url='https://www.dropbox.com/s/tuArchivo/FAQ.pdf?dl=1'; // Cambia por tu PDF
+  pdfDoc=await pdfjsLib.getDocument(url).promise;
+  pageNum=1;
+  renderPage();
+  document.getElementById('visorPDF').style.display='flex';
 }
 
-function cerrarPDF() {
-  document.getElementById('visorPDF').style.display = 'none';
-  document.getElementById('pdfFrame').src = '';
+function cerrarPDF(){
+  document.getElementById('visorPDF').style.display='none';
+  pdfDoc=null;
 }
 
-function toggleSubmenu() {
-  const submenu = document.getElementById('submenu');
-  submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
+async function renderPage(){
+  if(!pdfDoc) return;
+  const page=await pdfDoc.getPage(pageNum);
+  const viewport=page.getViewport({scale:1.2});
+  canvas.height=viewport.height;
+  canvas.width=viewport.width;
+  await page.render({canvasContext:ctx,viewport}).promise;
+  document.getElementById('pageNum').innerText=`${pageNum} / ${pdfDoc.numPages}`;
 }
 
-function descargar(url) {
-  if (url.includes('dropbox')) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = '';
+function nextPage(){ if(pdfDoc&&pageNum<pdfDoc.numPages){pageNum++; renderPage();} }
+function prevPage(){ if(pdfDoc&&pageNum>1){pageNum--; renderPage();} }
+
+function toggleSubmenu(){
+  const sm=document.getElementById('submenu');
+  sm.style.display=sm.style.display==='flex'?'none':'flex';
+}
+
+function descargar(url){
+  if(url.includes('dropbox')){
+    const a=document.createElement('a');
+    a.href=url;
+    a.download='';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-  } else {
-    window.open(url,'_blank');
-  }
+  }else{ window.open(url,'_blank'); }
   alert('✅ Descarga iniciada');
 }
 </script>
-
 </body>
 </html>
