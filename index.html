@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1919Plus | Descargas</title>
-<link rel="icon" href="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" type="image/png">
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
@@ -23,9 +21,9 @@ body {
   align-items: center;
   justify-content: flex-start;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
+/* Fondo glow */
 .bg-glow {
   position: fixed;
   width: 450px;
@@ -72,74 +70,39 @@ h1 {
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px; /* Más espacio entre botones One Click */
 }
 
 .menu a, .menu button, .submenu-btn {
   text-decoration: none;
   color: #fff;
   font-weight: 600;
-  padding: 16px 20px;
+  padding: 18px 20px; /* Cajas más grandes */
   border-radius: 14px;
   background: linear-gradient(90deg, #ff6a00, #ff4500);
   box-shadow: 0 0 18px rgba(255, 140, 0, 0.5);
-  transition: all 0.3s ease, box-shadow 0.6s ease-in-out;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   border: none;
   font-family: inherit;
   text-align: left;
-  width: 100%;
   font-size: 1rem;
 }
 
-.menu a::after, .menu button::after, .submenu-btn::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.0) 60%);
-  transform: rotate(45deg) translate(-200%, -200%);
-  transition: all 0.7s ease;
-}
-.menu a:hover::after, .menu button:hover::after, .submenu-btn:hover::after {
-  transform: rotate(45deg) translate(200%, 200%);
-}
-
-.menu a:hover, .menu button:hover, .submenu-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(255, 140, 0, 0.6);
-}
-
-.submenu { width: 100%; }
 .submenu-content {
-  max-height: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 6px;
-  transition: max-height 0.5s ease, padding 0.5s ease;
+  gap: 15px; /* Separación extra para puntero Downloader */
+  margin-top: 8px;
 }
-.submenu-content.show { max-height: 500px; padding-bottom:10px; }
+
 .submenu-content a {
-  padding: 14px 18px;
+  padding: 16px 18px;
   border-radius: 12px;
   background: linear-gradient(90deg, #ff6a00, #ff4500);
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.95rem;
 }
-.submenu-content a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px rgba(255,140,0,0.5);
-}
-.submenu-btn .arrow { float: right; transition: transform 0.3s ease; }
-.submenu-open .arrow { transform: rotate(180deg); }
 
 .support {
   position: fixed;
@@ -157,7 +120,6 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-.support:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(37,211,102,0.9); }
 
 footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 15px; }
 
@@ -202,36 +164,32 @@ footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 15px; }
   display: flex;
   flex-direction: column;
 }
-
-#pdfContainer {
-  flex: 1;
-  overflow-y: auto;
-  background: #000;
-}
-
-/* Botones PDF ◀▶ */
-.pdf-controls {
+.modal-controls {
   display: flex;
   justify-content: space-between;
   padding: 8px 12px;
-  background: rgba(0,0,0,0.8);
 }
-.pdf-controls button {
+.modal-controls button {
+  padding: 6px 12px;
   background: #ff6a00;
   border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: bold;
+  border-radius: 6px;
+  color: white;
   cursor: pointer;
 }
-.pdf-controls button:hover { background: #ff4500; }
-
-/* Cerrar */
+.modal-controls button:hover { background: #ff4500; }
+.modal iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
 .close-btn {
-  position: absolute; top: 8px; right: 12px;
+  position: absolute;
+  top: 8px;
+  right: 12px;
   background: rgba(255,128,0,0.8);
-  border: none; color: white; font-size: 18px;
+  border: none; color: white;
+  font-size: 18px;
   font-weight: bold; cursor: pointer;
   border-radius: 5px; padding: 5px 8px;
   transition: background 0.3s; z-index:1020;
@@ -242,8 +200,8 @@ footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 15px; }
   .container { padding: 20px 15px; }
   .logo { width: 100px; }
   h1 { font-size: 1.5rem; }
-  .menu a, .menu button, .submenu-btn { padding: 14px 16px; font-size: 0.95rem; }
-  .submenu-content a { padding: 12px 14px; font-size: 0.9rem; }
+  .menu a, .menu button, .submenu-btn { padding: 16px 16px; font-size: 0.95rem; }
+  .submenu-content a { padding: 14px 14px; font-size: 0.9rem; }
   .support { padding: 12px 14px; font-size: 0.9rem; }
 }
 </style>
@@ -273,32 +231,27 @@ footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 15px; }
   </div>
 </div>
 
-<a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda%20con%20Spinning%20TV" target="_blank">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24" style="margin-right:8px;">
-    <path d="M20.52 3.478A11.81 11.81 0 0012.003.004C5.383.004 0 5.386 0 12.006c0 2.12.555 4.17 1.61 5.99L0 24l6.11-1.6c1.82 1.05 3.867 1.61 5.89 1.61 6.62 0 12.003-5.383 12.003-12.004 0-3.2-1.25-6.21-3.48-8.53zm-8.517 17.03a9.43 9.43 0 01-4.787-1.31l-.34-.203-3.627.949.968-3.533-.22-.357a9.438 9.438 0 011.33-12.576 9.46 9.46 0 0112.576 1.33 9.422 9.422 0 01-8.907 15.4zm5.02-6.96c-.274-.137-1.624-.8-1.876-.892-.25-.094-.432-.137-.614.137-.182.274-.7.892-.858 1.073-.16.182-.32.205-.593.068-.274-.137-1.155-.424-2.2-1.356-.814-.725-1.363-1.62-1.523-1.893-.16-.274-.017-.422.12-.558.123-.123.274-.32.412-.48.137-.16.182-.274.274-.457.094-.182.048-.342-.024-.48-.068-.137-.614-1.476-.84-2.03-.22-.53-.444-.457-.614-.466-.16-.01-.342-.01-.524-.01s-.48.068-.732.342c-.274.274-1.04 1.016-1.04 2.48 0 1.462 1.065 2.878 1.214 3.074.137.182 2.094 3.208 5.07 4.5.708.306 1.26.49 1.69.627.71.227 1.36.195 1.872.118.57-.085 1.624-.663 1.856-1.302.23-.64.23-1.188.16-1.302-.068-.11-.25-.182-.523-.32z"/>
-  </svg>
-  Soporte
+<a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda" target="_blank">
+  WhatsApp Soporte
 </a>
 
 <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
 <div class="toast" id="toast">✅ Descarga iniciada</div>
 
-<!-- Modal PDF con botones ◀▶ -->
+<!-- Modal PDF -->
 <div class="modal" id="visorPDF">
-  <div class="modal-content" id="modalPDF">
+  <div class="modal-content">
     <button class="close-btn" onclick="cerrarPDF()">✖</button>
-    <div class="pdf-controls">
-      <button onclick="prevPage()">◀ Anterior</button>
-      <span id="pageIndicator" style="color:#fff; font-weight:bold;">1</span>
-      <button onclick="nextPage()">Siguiente ▶</button>
+    <div class="modal-controls">
+      <button onclick="scrollPDF(-1)">◀ Anterior</button>
+      <button onclick="scrollPDF(1)">Siguiente ▶</button>
     </div>
-    <iframe id="pdfFrame" src="" style="flex:1;"></iframe>
+    <iframe id="pdfFrame" src=""></iframe>
   </div>
 </div>
 
-<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script>
-// Glow animado
+// Glow
 const glow = document.getElementById('glow');
 document.addEventListener('mousemove', e => {
   const x = (e.clientX / window.innerWidth) * 100;
@@ -306,67 +259,56 @@ document.addEventListener('mousemove', e => {
   glow.style.transform = `translate(${x-50}vw, ${y-50}vh)`;
 });
 
-// Submenú
+// Submenu
 function toggleSubmenu(id, button){
   const submenu=document.getElementById(id);
-  const isOpen=submenu.classList.contains('show');
-  if(isOpen){submenu.classList.remove('show'); button.classList.remove('submenu-open');}
-  else{submenu.classList.add('show'); button.classList.add('submenu-open'); submenu.scrollIntoView({behavior:'smooth', block:'center'});}
+  submenu.classList.toggle('show');
+  button.classList.toggle('submenu-open');
 }
 
-// Toast
-function descargarApp(btn, url){
-  btn.style.transform='scale(0.95)';
-  setTimeout(()=>{btn.style.transform='scale(1)';},150);
-
+// Descarga APK
+function descargarApp(btn,url){
   const toast=document.getElementById('toast');
   toast.style.opacity=1;
   toast.style.transform='translateX(-50%) translateY(0)';
   setTimeout(()=>{toast.style.opacity=0; toast.style.transform='translateX(-50%) translateY(20px)';},2000);
-
   const link=document.createElement('a');
-  link.href=url; 
-  link.download=''; 
+  link.href=url;
+  link.download='';
   document.body.appendChild(link);
-  link.click(); 
+  link.click();
   document.body.removeChild(link);
 }
 
-// PDF con navegación ◀▶
-let pdfDoc = null, pageNum = 1;
+// PDF modal
+const modal=document.getElementById('visorPDF');
+const iframe=document.getElementById('pdfFrame');
+
 function abrirPDF(){
-  const url = 'https://github.com/MYN14/candy_service/raw/main/FAQ.pdf';
-  const loadingTask = pdfjsLib.getDocument(url);
-  loadingTask.promise.then(function(pdf) {
-    pdfDoc = pdf;
-    pageNum = 1;
-    renderPage(pageNum);
-    modal.style.display='flex';
-  });
+  const rawPdfUrl="https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
+  const viewerUrl=`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
+  iframe.src=viewerUrl;
+  modal.style.display='flex';
 }
-
-function renderPage(num){
-  pdfDoc.getPage(num).then(function(page){
-    const scale = 1.2;
-    const viewport = page.getViewport({scale: scale});
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    page.render({canvasContext: context, viewport: viewport}).promise.then(function(){
-      const pdfFrame = document.getElementById('pdfFrame');
-      pdfFrame.src = canvas.toDataURL();
-    });
-    document.getElementById('pageIndicator').innerText = `${num} / ${pdfDoc.numPages}`;
-  });
-}
-
-function prevPage(){ if(pageNum<=1) return; pageNum--; renderPage(pageNum); }
-function nextPage(){ if(pageNum>=pdfDoc.numPages) return; pageNum++; renderPage(pageNum); }
 
 function cerrarPDF(){
   modal.style.display='none';
-  pdfDoc = null;
+  iframe.src='';
+}
+
+// Scroll seguro PDF
+function scrollPDF(direction){
+  try {
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    if(!doc) return;
+    const frame = iframe.contentWindow;
+    const scrollAmount = 300; 
+    const maxScroll = frame.document.body.scrollHeight - frame.innerHeight;
+    let newScroll = frame.scrollY + direction*scrollAmount;
+    if(newScroll < 0) newScroll = 0;
+    if(newScroll > maxScroll) newScroll = maxScroll;
+    frame.scrollTo({top:newScroll, behavior:'smooth'});
+  } catch(e){ console.log("Scroll seguro no disponible en este navegador"); }
 }
 </script>
 </body>
