@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1919Plus | Descargas</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <style>
@@ -120,19 +120,10 @@ footer {
   align-items: center;
 }
 
-.modal canvas {
-  flex: 1;
+.modal-content iframe {
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 5px;
-}
-
-.pdf-controls {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
+  height: 100%;
+  border: none;
 }
 
 .close-btn {
@@ -208,51 +199,26 @@ footer {
   <i class="fab fa-whatsapp"></i> CONTACTA
 </a>
 
-<!-- PDF Modal -->
+<!-- Modal PDF -->
 <div class="modal" id="visorPDF">
   <div class="modal-content">
     <button class="close-btn" onclick="cerrarPDF()">✖</button>
-    <canvas id="pdfCanvas"></canvas>
-    <div class="pdf-controls">
-      <button onclick="prevPage()">◀ Anterior</button>
-      <span id="pageNum">1 / 1</span>
-      <button onclick="nextPage()">Siguiente ▶</button>
-    </div>
+    <iframe id="pdfFrame" src=""></iframe>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.114/pdf.min.js"></script>
 <script>
-let pdfDoc = null, pageNum = 1;
-const canvas = document.getElementById('pdfCanvas');
-const ctx = canvas.getContext('2d');
-
-async function abrirPDF() {
+function abrirPDF() {
   const url = 'https://github.com/MYN14/candy_service/raw/main/FAQ.pdf';
-  pdfDoc = await pdfjsLib.getDocument(url).promise;
-  pageNum = 1;
-  document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
-  renderPage();
+  const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(url)}`;
+  document.getElementById('pdfFrame').src = viewerUrl;
   document.getElementById('visorPDF').style.display = 'flex';
 }
 
 function cerrarPDF() {
   document.getElementById('visorPDF').style.display = 'none';
-  pdfDoc = null;
+  document.getElementById('pdfFrame').src = '';
 }
-
-async function renderPage() {
-  if (!pdfDoc) return;
-  const page = await pdfDoc.getPage(pageNum);
-  const viewport = page.getViewport({ scale: 1.2 });
-  canvas.height = viewport.height;
-  canvas.width = viewport.width;
-  await page.render({ canvasContext: ctx, viewport }).promise;
-  document.getElementById('pageNum').innerText = `${pageNum} / ${pdfDoc.numPages}`;
-}
-
-function nextPage() { if (pageNum < pdfDoc.numPages) { pageNum++; renderPage(); } }
-function prevPage() { if (pageNum > 1) { pageNum--; renderPage(); } }
 
 function toggleSubmenu() {
   const submenu = document.getElementById('submenu');
@@ -273,5 +239,6 @@ function descargar(url) {
   alert('✅ Descarga iniciada');
 }
 </script>
+
 </body>
 </html>
