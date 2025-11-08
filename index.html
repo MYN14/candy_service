@@ -152,7 +152,7 @@ h1 {
   color: #fff;
   text-decoration: none;
   background: linear-gradient(90deg, #25D366, #128C7E);
-  padding: 12px 18px;
+  padding: 12px 16px;
   border-radius: 50px;
   box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
   z-index: 10000;
@@ -256,7 +256,13 @@ footer { color: #888; font-size: 0.8rem; text-align: center; margin-top: 10px; }
   </div>
 </div>
 
-<a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda%20con%20Spinning%20TV" target="_blank">💬 Soporte</a>
+<!-- Botón soporte WhatsApp con logo SVG -->
+<a class="support" href="https://wa.me/34603102438?text=Hola%2C%20necesito%20ayuda%20con%20Spinning%20TV" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24" style="margin-right:8px;">
+    <path d="M20.52 3.478A11.81 11.81 0 0012.003.004C5.383.004 0 5.386 0 12.006c0 2.12.555 4.17 1.61 5.99L0 24l6.11-1.6c1.82 1.05 3.867 1.61 5.89 1.61 6.62 0 12.003-5.383 12.003-12.004 0-3.2-1.25-6.21-3.48-8.53zm-8.517 17.03a9.43 9.43 0 01-4.787-1.31l-.34-.203-3.627.949.968-3.533-.22-.357a9.438 9.438 0 011.33-12.576 9.46 9.46 0 0112.576 1.33 9.422 9.422 0 01-8.907 15.4zm5.02-6.96c-.274-.137-1.624-.8-1.876-.892-.25-.094-.432-.137-.614.137-.182.274-.7.892-.858 1.073-.16.182-.32.205-.593.068-.274-.137-1.155-.424-2.2-1.356-.814-.725-1.363-1.62-1.523-1.893-.16-.274-.017-.422.12-.558.123-.123.274-.32.412-.48.137-.16.182-.274.274-.457.094-.182.048-.342-.024-.48-.068-.137-.614-1.476-.84-2.03-.22-.53-.444-.457-.614-.466-.16-.01-.342-.01-.524-.01s-.48.068-.732.342c-.274.274-1.04 1.016-1.04 2.48 0 1.462 1.065 2.878 1.214 3.074.137.182 2.094 3.208 5.07 4.5.708.306 1.26.49 1.69.627.71.227 1.36.195 1.872.118.57-.085 1.624-.663 1.856-1.302.23-.64.23-1.188.16-1.302-.068-.11-.25-.182-.523-.32z"/>
+  </svg>
+  Soporte
+</a>
 
 <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
 
@@ -319,8 +325,11 @@ function descargarApp(btn, url){
   setTimeout(()=>{toast.style.opacity=0; toast.style.transform='translateX(-50%) translateY(20px)';},2000);
 
   const link=document.createElement('a');
-  link.href=url; link.download=''; document.body.appendChild(link);
-  link.click(); document.body.removeChild(link);
+  link.href=url; 
+  link.download=''; 
+  document.body.appendChild(link);
+  link.click(); 
+  document.body.removeChild(link);
 }
 </script>
 </body>
