@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1919Plus | Descargas</title>
+
+  <!-- 🧭 Metadatos para compartir -->
+  <meta name="description" content="Centro de descargas oficial de 1919Plus. Descarga Spinning TV, IBO Player, y más.">
+  <meta property="og:title" content="1919Plus | Centro de Descargas">
+  <meta property="og:description" content="Descarga tus aplicaciones oficiales de Spinning TV e IBO Player aquí.">
+  <meta property="og:image" content="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://1919plus.com/descargas">
+
+  <link rel="icon" href="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" type="image/png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,128,0,0.25), transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      transition: transform 0.2s ease-out;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 128, 0, 0.2);
+      border-radius: 20px;
+      padding: 40px 50px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,128,0,0.2);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff8000, #ff4500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.4s forwards;
+    }
+
+    .menu a, .menu button {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 15px 20px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff6a00, #ff4500);
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .menu a::before, .menu button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .menu a:hover::before, .menu button:hover::before {
+      left: 100%;
+    }
+
+    .menu a:hover, .menu button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* Modal del visor PDF */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .modal::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,128,0,0.3), transparent 70%);
+      filter: blur(100px);
+      animation: moveModalGlow 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes moveModalGlow {
+      from { transform: translate(-200px, -100px); }
+      to { transform: translate(200px, 150px); }
+    }
+
+    .modal-content {
+      width: 80%;
+      height: 80%;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 128, 0, 0.6);
+      z-index: 1010;
+      animation: fadeInModal 0.5s ease-out;
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: rgba(255,128,0,0.8);
+      border: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      padding: 5px 10px;
+      transition: background 0.3s;
+      z-index: 1020;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,80,0,1);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow" id="glow"></div>
+
+  <div class="container">
+    <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" class="logo" alt="Logo 1919Plus">
+    <h1>Centro de Descargas</h1>
+
+    <div class="menu">
+      <button onclick="abrirPDF()"> ⚠️ ¡Importante leer!</button>
+      <a href="https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=5r8jyp2b&dl=0">📱📺 Descargar Spinning TV</a>
+      <a href="https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=agfl45x6&dl=0">📱📺 Descargar Spinning IBO Player</a>
+      <a href="https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=l6jo0ike&dl=0">📱📺 Descargar Spinning MATE</a>
+      <a href="https://apps.apple.com/us/app/hot-player/id6695762404">📱 APP para Apple y PC 💻</a>
+    </div>
+  </div>
+
+  <footer>© 2025 1919Plus | Todos los derechos reservados</footer>
+
+  <!-- Modal -->
+  <div class="modal" id="visorPDF">
+    <div class="modal-content">
+      <button class="close-btn" onclick="cerrarPDF()">✖</button>
+      <iframe id="pdfFrame" src=""></iframe>
+    </div>
+  </div>
+
+  <script>
+    // 🎬 Glow dinámico que sigue el cursor
+    const glow = document.getElementById('glow');
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      glow.style.transform = `translate(${x - 50}vw, ${y - 50}vh)`;
+    });
+
+    // 🧾 Modal PDF
+    function abrirPDF() {
+      const rawPdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
+      const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
+      document.getElementById('pdfFrame').src = viewerUrl;
+      document.getElementById('visorPDF').style.display = 'flex';
+    }
+
+    function cerrarPDF() {
+      const modal = document.getElementById('visorPDF');
+      modal.style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+  </script>
+</body>
+</html>
