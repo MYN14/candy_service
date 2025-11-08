@@ -135,7 +135,6 @@
       overflow: hidden;
     }
 
-    /* Fondo animado dentro del modal */
     .modal::before {
       content: "";
       position: absolute;
@@ -223,8 +222,10 @@
 
   <script>
     function abrirPDF() {
-      const pdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf"; 
-      document.getElementById('pdfFrame').src = pdfUrl;
+      const rawPdfUrl = "https://github.com/MYN14/candy_service/raw/main/FAQ.pdf";
+      // Usar visor de Google Docs para mayor compatibilidad
+      const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(rawPdfUrl)}`;
+      document.getElementById('pdfFrame').src = viewerUrl;
       document.getElementById('visorPDF').style.display = 'flex';
     }
 
