@@ -1,145 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Servicio</title>
-    <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel - Servicio</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  <!-- Importar Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        header {
-            background-color: #2980b9;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+  <style>
+    /* === RESET === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        /* Menú de botones */
-        nav {
-            margin-top: 80px; /* espacio para header fijo */
-            background-color: #3498db;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 10px 0;
-        }
+    body {
+      background-color: #0b0b0c;
+      color: #eee;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-        nav button {
-            background-color: #2980b9;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
+    /* === HEADER === */
+    header {
+      background: linear-gradient(90deg, #111, #1a1a1a);
+      color: #ff6600;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px #ff660080;
+      text-shadow: 0 0 10px #ff6600;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
 
-        nav button:hover {
-            background-color: #1c5980;
-        }
+    /* === MENÚ === */
+    nav {
+      margin-top: 80px;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      border-bottom: 1px solid #222;
+      box-shadow: 0 0 10px #ff660040 inset;
+    }
 
-        nav button.active {
-            background-color: #e74c3c;
-        }
+    nav button {
+      background-color: #1a1a1a;
+      color: #ff6600;
+      border: 1px solid #ff6600;
+      padding: 12px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #ff660030;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        /* Área de contenido */
-        #content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
+    nav button svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2;
+      transition: transform 0.3s ease;
+    }
 
-        .iframe-container {
-            width: 100%;
-            height: 80vh;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
+    nav button:hover svg {
+      transform: scale(1.15) rotate(-5deg);
+    }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    nav button:hover {
+      background-color: #ff6600;
+      color: #0d0d0d;
+      box-shadow: 0 0 20px #ff6600, 0 0 40px #ff660060;
+      transform: translateY(-2px);
+    }
+
+    nav button.active {
+      background-color: #ff6600;
+      color: #0d0d0d;
+      box-shadow: 0 0 25px #ff6600, 0 0 60px #ff660080;
+    }
+
+    /* === CONTENIDO === */
+    #content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+      margin-top: 10px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    h2 {
+      color: #ff6600;
+      text-shadow: 0 0 10px #ff6600;
+      margin-bottom: 15px;
+    }
+
+    p, li {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 1.05em;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li::before {
+      content: "⚡";
+      color: #ff6600;
+      margin-right: 8px;
+    }
+
+    /* === IFRAME === */
+    .iframe-container {
+      width: 100%;
+      height: 80vh;
+      margin-top: 15px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 25px #ff660060;
+      background: #111;
+      animation: fadeIn 0.5s ease;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* === ANIMACIONES === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === SCROLLBAR PERSONALIZADA === */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #ff6600;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #1a1a1a;
+    }
+
+  </style>
 </head>
 <body>
 
-    <header>
-        Bienvenido al Servicio
-    </header>
+  <header>🔥 Panel del Servicio 🔥</header>
 
-    <nav>
-        <button class="menu-btn active" data-content="home">Inicio</button>
-        <button class="menu-btn" data-content="apps">Aplicaciones</button>
-        <button class="menu-btn" data-content="leer">¡Importante leer!</button>
-    </nav>
+  <nav>
+    <button class="menu-btn active" data-content="home">
+      <i data-lucide="home"></i> Inicio
+    </button>
+    <button class="menu-btn" data-content="apps">
+      <i data-lucide="cpu"></i> Aplicaciones
+    </button>
+    <button class="menu-btn" data-content="leer">
+      <i data-lucide="book-open"></i> ¡Importante Leer!
+    </button>
+  </nav>
 
-    <div id="content">
-        <h2>Página de inicio</h2>
-        <p>Bienvenido al servicio. Selecciona una opción en el menú para ver más contenido.</p>
-    </div>
+  <div id="content">
+    <h2>Bienvenido al Panel</h2>
+    <p>Explora las opciones del menú para acceder a las aplicaciones o leer la información importante del servicio.</p>
+  </div>
 
-    <script>
-        const buttons = document.querySelectorAll('.menu-btn');
-        const content = document.getElementById('content');
+  <script>
+    // Inicializar iconos Lucide
+    lucide.createIcons();
 
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Quitar clase active a todos los botones
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+    const buttons = document.querySelectorAll('.menu-btn');
+    const content = document.getElementById('content');
 
-                // Cambiar contenido según el botón pulsado
-                const target = btn.getAttribute('data-content');
-                if(target === 'home') {
-                    content.innerHTML = `
-                        <h2>Página de inicio</h2>
-                        <p>Bienvenido al servicio. Selecciona una opción en el menú para ver más contenido.</p>
-                    `;
-                } else if(target === 'apps') {
-                    content.innerHTML = `
-                        <h2>Aplicaciones disponibles</h2>
-                        <ul>
-                            <li>App 1</li>
-                            <li>App 2</li>
-                            <li>App 3</li>
-                        </ul>
-                    `;
-                } else if(target === 'leer') {
-                    content.innerHTML = `
-                        <h2>Información importante</h2>
-                        <div class="iframe-container">
-                            <iframe src="leer.html" title="Información importante"></iframe>
-                        </div>
-                    `;
-                }
-            });
-        });
-    </script>
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.getAttribute('data-content');
+
+        if (target === 'home') {
+          content.innerHTML = `
+            <h2>Bienvenido al Panel</h2>
+            <p>Explora las opciones del menú para acceder a las aplicaciones o leer la información importante del servicio.</p>
+          `;
+        } 
+        else if (target === 'apps') {
+          content.innerHTML = `
+            <h2>Aplicaciones disponibles</h2>
+            <ul>
+              <li>🔥 App Streaming HD</li>
+              <li>⚙️ VPN Protect</li>
+              <li>📺 Control Remoto Smart</li>
+            </ul>
+          `;
+        } 
+        else if (target === 'leer') {
+          content.innerHTML = `
+            <h2>Información Importante</h2>
+            <div class="iframe-container">
+              <iframe src="leer.html" title="Información importante"></iframe>
+            </div>
+          `;
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
