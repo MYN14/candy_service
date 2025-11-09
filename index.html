@@ -14,10 +14,10 @@ body {
   padding: 0;
   background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
   color: #fff;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 /* Contenedor principal */
@@ -26,7 +26,7 @@ body {
   backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 20px;
-  margin: 20px 0;
+  margin: 20px auto;
   width: 95%;
   max-width: 420px;
   text-align: center;
@@ -56,7 +56,7 @@ h1 {
 .menu, .submenu {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .menu button, .submenu button {
@@ -67,7 +67,7 @@ h1 {
   font-weight: 600;
   color: #fff;
   background: linear-gradient(90deg,#ff6a00,#ff4500);
-  box-shadow: 0 0 15px rgba(255,140,0,0.4);
+  box-shadow: 0 0 18px rgba(255,140,0,0.4);
   cursor: pointer;
   text-align: left;
   transition: all 0.3s;
@@ -75,12 +75,12 @@ h1 {
 
 .menu button:hover, .submenu button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(255,140,0,0.6);
+  box-shadow: 0 0 28px rgba(255,140,0,0.6);
 }
 
 .submenu {
   display: none;
-  gap: 10px;
+  gap: 12px;
   padding-left: 10px;
 }
 
@@ -118,12 +118,12 @@ footer {
   position: relative;
 }
 
-/* Canvas PDF ajustable al alto disponible */
+/* Canvas PDF ajustable */
 .modal-content canvas {
   width: 100%;
-  flex: 1;
+  height: 100%;
   border-radius: 8px;
-  margin-bottom: 5px;
+  object-fit: contain;
 }
 
 /* Botones de navegación PDF */
@@ -152,7 +152,7 @@ footer {
 
 .close-btn:hover { background: rgba(255,80,0,1); }
 
-/* Botón WhatsApp flotante */
+/* WhatsApp button */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
@@ -239,9 +239,11 @@ async function renderPage(){
   if(!pdfDoc) return;
   const page=await pdfDoc.getPage(pageNum);
   const viewport=page.getViewport({scale:1.2});
-  canvas.height=viewport.height;
-  canvas.width=viewport.width;
-  await page.render({canvasContext:ctx,viewport}).promise;
+  const scale=Math.min((canvas.parentElement.clientWidth/viewport.width),(canvas.parentElement.clientHeight/viewport.height));
+  const scaledViewport=page.getViewport({scale});
+  canvas.height=scaledViewport.height;
+  canvas.width=scaledViewport.width;
+  await page.render({canvasContext:ctx,viewport:scaledViewport}).promise;
   document.getElementById('pageNum').innerText=`${pageNum} / ${pdfDoc.numPages}`;
 }
 
@@ -264,6 +266,9 @@ function descargar(url){
   }else{ window.open(url,'_blank'); }
   alert('✅ Descarga iniciada');
 }
+
+window.addEventListener('resize',()=>{if(pdfDoc) renderPage();});
 </script>
+
 </body>
 </html>
