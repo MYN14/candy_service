@@ -4,158 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel del Servicio</title>
-
-  <!-- Iconos Lucide -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
+      font-family: Arial, Helvetica, sans-serif;
       background-color: #0b0b0c;
       color: #eee;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+      text-align: center;
     }
 
     header {
-      background: linear-gradient(90deg, #111, #1a1a1a);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: #111;
       padding: 15px 0;
-      box-shadow: 0 0 20px #ff660080;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
+      box-shadow: 0 0 15px #ff660080;
     }
 
     header img {
       height: 60px;
       width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px #ff6600);
+      filter: drop-shadow(0 0 8px #ff6600);
     }
 
     nav {
-      margin-top: 80px;
-      background-color: #111;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding: 15px;
+      background-color: #1a1a1a;
+      border-top: 1px solid #222;
       border-bottom: 1px solid #222;
-      box-shadow: 0 0 10px #ff660040 inset;
     }
 
     nav button {
-      background-color: #1a1a1a;
+      background-color: transparent;
       color: #ff6600;
-      border: 1px solid #ff6600;
-      padding: 12px 25px;
-      border-radius: 10px;
-      cursor: pointer;
+      border: none;
+      padding: 15px 25px;
       font-size: 1em;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 8px #ff660030;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    nav button svg {
-      width: 22px;
-      height: 22px;
-      stroke-width: 2.2;
-      transition: transform 0.3s ease;
-    }
-
-    nav button:hover svg {
-      transform: scale(1.15) rotate(-5deg);
-    }
-
-    nav button:hover {
+    nav button:hover, nav button.active {
       background-color: #ff6600;
-      color: #0d0d0d;
-      box-shadow: 0 0 20px #ff6600, 0 0 40px #ff660060;
-      transform: translateY(-2px);
-    }
-
-    nav button.active {
-      background-color: #ff6600;
-      color: #0d0d0d;
-      box-shadow: 0 0 25px #ff6600, 0 0 60px #ff660080;
+      color: #0b0b0c;
+      box-shadow: 0 0 10px #ff6600;
     }
 
     #content {
-      flex: 1;
       padding: 20px;
-      overflow-y: auto;
-      animation: fadeIn 0.4s ease;
     }
 
     h2 {
       color: #ff6600;
-      text-shadow: 0 0 10px #ff6600;
-      margin-bottom: 15px;
+      text-shadow: 0 0 6px #ff6600;
     }
 
-    p, li {
+    p {
       color: #ccc;
-      line-height: 1.6;
-      font-size: 1.05em;
+      font-size: 1em;
+      line-height: 1.5;
     }
 
-    .iframe-container {
-      width: 100%;
-      height: 80vh;
-      margin-top: 15px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 25px #ff660060;
-      background: #111;
-      animation: fadeIn 0.5s ease;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* BOTÓN DE DESCARGA */
     .download-btn {
       background-color: #ff6600;
       color: #0b0b0c;
-      padding: 15px 30px;
-      border-radius: 12px;
-      font-size: 1.1em;
       border: none;
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-size: 1.05em;
       cursor: pointer;
-      box-shadow: 0 0 15px #ff6600a0;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
       margin-top: 20px;
+      box-shadow: 0 0 15px #ff660060;
+      transition: background-color 0.2s ease;
     }
 
     .download-btn:hover {
       background-color: #ff8533;
-      box-shadow: 0 0 25px #ff6600, 0 0 60px #ff660080;
-      transform: translateY(-3px);
     }
 
-    /* TOAST (MENSAJE DE CONFIRMACIÓN) */
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 8px;
+      background-color: #111;
+      margin-top: 10px;
+    }
+
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 25px;
@@ -164,60 +100,26 @@
       background-color: #111;
       border: 1px solid #ff6600;
       color: #ff6600;
-      padding: 12px 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px #ff660070;
+      padding: 10px 25px;
+      border-radius: 6px;
       opacity: 0;
-      transition: all 0.4s ease;
-      z-index: 2000;
+      transition: opacity 0.4s ease;
+      z-index: 999;
     }
 
     .toast.show {
       opacity: 1;
-      bottom: 50px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #ff6600;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: #1a1a1a;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       nav {
         flex-direction: column;
-        align-items: center;
       }
       nav button {
-        width: 90%;
-        justify-content: center;
-        font-size: 1.1em;
-      }
-      header img {
-        height: 50px;
+        width: 100%;
+        border-top: 1px solid #222;
       }
     }
-
-    @media (max-width: 480px) {
-      nav button {
-        font-size: 1em;
-        padding: 10px 20px;
-      }
-      header img {
-        height: 45px;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -227,67 +129,55 @@
   </header>
 
   <nav>
-    <button class="menu-btn active" data-content="apps">
-      <i data-lucide="cpu"></i> Aplicaciones
-    </button>
-    <button class="menu-btn" data-content="leer">
-      <i data-lucide="book-open"></i> ¡Importante Leer!
-    </button>
+    <button class="menu-btn active" data-section="apps">📱 Aplicaciones</button>
+    <button class="menu-btn" data-section="leer">📖 ¡Importante Leer!</button>
   </nav>
 
   <div id="content">
     <h2>Aplicaciones disponibles</h2>
     <p>Descarga la aplicación oficial desde el siguiente enlace:</p>
-    <button class="download-btn" onclick="descargarApp()">
-      <i data-lucide='download'></i> Descargar Spinning TV
-    </button>
+    <button class="download-btn" onclick="descargarApp()">⬇️ Descargar Spinning TV</button>
   </div>
 
   <div id="toast" class="toast">Descarga iniciada ✅</div>
 
   <script>
-    lucide.createIcons();
-
     const buttons = document.querySelectorAll('.menu-btn');
     const content = document.getElementById('content');
     const toast = document.getElementById('toast');
 
+    // Cambiar de sección
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const target = btn.getAttribute('data-content');
+        const section = btn.getAttribute('data-section');
 
-        if (target === 'apps') {
+        if (section === 'apps') {
           content.innerHTML = `
             <h2>Aplicaciones disponibles</h2>
             <p>Descarga la aplicación oficial desde el siguiente enlace:</p>
-            <button class="download-btn" onclick="descargarApp()">
-              <i data-lucide='download'></i> Descargar Spinning TV
-            </button>
+            <button class="download-btn" onclick="descargarApp()">⬇️ Descargar Spinning TV</button>
           `;
-          lucide.createIcons();
-        } 
-        else if (target === 'leer') {
+        } else if (section === 'leer') {
           content.innerHTML = `
             <h2>Información Importante</h2>
-            <div class="iframe-container">
-              <iframe src="leer.html" title="Información importante"></iframe>
-            </div>
+            <iframe src="leer.html" title="Información importante"></iframe>
           `;
         }
       });
     });
 
+    // Descargar APK
     function descargarApp() {
-      window.open('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=gmswll3y&dl=0', '_blank');
+      window.location.href = 'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=gmswll3y&dl=0';
       mostrarToast();
     }
 
     function mostrarToast() {
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
+      setTimeout(() => toast.classList.remove('show'), 2000);
     }
   </script>
 
