@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel 1919Plus</title>
+  <title>Panel del Servicio</title>
   <style>
     body {
       margin: 0;
@@ -127,6 +127,32 @@
       opacity: 1;
     }
 
+    /* 🔥 BOTÓN FLOTANTE DE WHATSAPP 🔥 */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 15px #25D36670, 0 0 25px #ff660070;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #25D366, 0 0 30px #ff6600;
+    }
+
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
@@ -139,6 +165,12 @@
 
       .app-card {
         width: 90%;
+      }
+
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
       }
     }
   </style>
@@ -176,17 +208,19 @@
       <p>Versión disponible para dispositivos Apple (App Store)</p>
       <button class="download-btn" onclick="descargarApp4()">🍏 <b>Descargar App para Apple</b></button>
     </div>
-
   </div>
 
   <div id="toast" class="toast">Descarga iniciada ✅</div>
+
+  <!-- ✅ Botón flotante de soporte -->
+  <button class="whatsapp-float" onclick="abrirWhatsapp()">💬</button>
 
   <script>
     const buttons = document.querySelectorAll('.menu-btn');
     const content = document.getElementById('content');
     const toast = document.getElementById('toast');
 
-    // Cambio de sección
+    // Navegación
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('active'));
@@ -252,6 +286,11 @@
     function mostrarToast() {
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // Función de soporte WhatsApp
+    function abrirWhatsapp() {
+      window.open('https://wa.me/34603102438', '_blank');
     }
   </script>
 
