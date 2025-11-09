@@ -60,22 +60,39 @@
       text-shadow: 0 0 6px #ff6600;
     }
 
+    .app-card {
+      background-color: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      margin: 25px auto;
+      padding: 25px;
+      max-width: 500px;
+      box-shadow: 0 0 10px #ff660030;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 15px #ff660060;
+    }
+
+    .app-card p {
+      color: #ccc;
+      font-size: 0.95em;
+      margin-bottom: 15px;
+    }
+
     .download-btn {
       background-color: #ff6600;
       color: #0b0b0c;
       border: none;
       padding: 16px 35px;
       border-radius: 10px;
-      font-size: 1.2em;
+      font-size: 1.1em;
       cursor: pointer;
-      margin-top: 25px;
       font-weight: bold;
       box-shadow: 0 0 15px #ff660060;
       transition: background-color 0.2s ease;
-      display: block;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .download-btn:hover {
@@ -120,7 +137,7 @@
         border-top: 1px solid #222;
       }
 
-      .download-btn {
+      .app-card {
         width: 90%;
       }
     }
@@ -139,9 +156,27 @@
 
   <div id="content">
     <h2>Aplicaciones disponibles</h2>
-    <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
-    <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
-    <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
+
+    <div class="app-card">
+      <p>App con VPN integrada (recomendada)</p>
+      <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
+    </div>
+
+    <div class="app-card">
+      <p>App con una interfaz diferente (no incluye VPN)</p>
+      <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
+    </div>
+
+    <div class="app-card">
+      <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
+      <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
+    </div>
+
+    <div class="app-card">
+      <p>Versión disponible para dispositivos Apple (App Store)</p>
+      <button class="download-btn" onclick="descargarApp4()">🍏 <b>Descargar App para Apple</b></button>
+    </div>
+
   </div>
 
   <div id="toast" class="toast">Descarga iniciada ✅</div>
@@ -162,9 +197,26 @@
         if (section === 'apps') {
           content.innerHTML = `
             <h2>Aplicaciones disponibles</h2>
-            <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
-            <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
-            <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
+
+            <div class="app-card">
+              <p>App con VPN integrada (recomendada)</p>
+              <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
+            </div>
+
+            <div class="app-card">
+              <p>App con una interfaz diferente (no incluye VPN)</p>
+              <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
+            </div>
+
+            <div class="app-card">
+              <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
+              <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
+            </div>
+
+            <div class="app-card">
+              <p>Versión disponible para dispositivos Apple (App Store)</p>
+              <button class="download-btn" onclick="descargarApp4()">🍏 <b>Descargar App para Apple</b></button>
+            </div>
           `;
         } else if (section === 'leer') {
           content.innerHTML = `
@@ -188,6 +240,11 @@
 
     function descargarApp3() {
       window.location.href = 'https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=1eht75wo&dl=0';
+      mostrarToast();
+    }
+
+    function descargarApp4() {
+      window.location.href = 'https://apps.apple.com/us/app/hot-player/id6695762404';
       mostrarToast();
     }
 
