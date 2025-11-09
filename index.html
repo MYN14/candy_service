@@ -1,274 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1919Plus | Descargas</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Servicio</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top left, #1a1a1a, #0d0d0d);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-/* Contenedor principal */
-.container {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 20px auto;
-  width: 95%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(255,128,0,0.2);
-}
+        /* Header fijo */
+        header {
+            background-color: #2980b9;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
 
-/* Logo */
-.logo {
-  width: 120px;
-  margin-bottom: 15px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255,128,0,0.4);
-}
+        /* Contenedor del contenido */
+        main {
+            margin-top: 80px; /* espacio para el header fijo */
+            flex: 1;
+            overflow-y: auto;
+        }
 
-/* Título */
-h1 {
-  font-size: 1.7rem;
-  font-weight: 700;
-  background: linear-gradient(90deg,#ff8000,#ff4500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
+        /* Iframe que carga leer.html */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-/* Menú y submenú */
-.menu, .submenu {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.menu button, .submenu button {
-  font-size: 1rem;
-  padding: 18px 20px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(90deg,#ff6a00,#ff4500);
-  box-shadow: 0 0 18px rgba(255,140,0,0.4);
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.3s;
-}
-
-.menu button:hover, .submenu button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 28px rgba(255,140,0,0.6);
-}
-
-.submenu {
-  display: none;
-  gap: 12px;
-  padding-left: 10px;
-}
-
-/* Footer */
-footer {
-  margin-top: 10px;
-  font-size: 0.85rem;
-  color: #888;
-  text-align: center;
-}
-
-/* PDF Modal */
-.modal {
-  display: none;
-  position: fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.95);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-}
-
-.modal-content {
-  background: rgba(0,0,0,0.95);
-  border-radius: 12px;
-  width: 95%;
-  max-width: 450px;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-/* Canvas PDF ajustable */
-.modal-content canvas {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  object-fit: contain;
-}
-
-/* Botones de navegación PDF */
-.pdf-controls {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 5px;
-}
-
-/* Botón cerrar */
-.close-btn {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  background: rgba(255,128,0,0.8);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 5px 10px;
-  z-index: 10;
-}
-
-.close-btn:hover { background: rgba(255,80,0,1); }
-
-/* WhatsApp button */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  z-index: 1001;
-}
-
-.whatsapp-btn:hover { background: #1ebe57; text-decoration: none; }
-
-@media(max-width:480px){
-  .container { padding: 15px; }
-  h1 { font-size:1.5rem; }
-  .menu button,.submenu button{padding:16px 18px;font-size:0.95rem;}
-}
-</style>
+        /* Opcional: efecto de sombra alrededor del iframe */
+        .iframe-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: calc(100vh - 80px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <img src="https://github.com/MYN14/candy_service/blob/main/logo.jpg?raw=true" class="logo">
-  <h1>Centro de Descargas</h1>
+    <header>
+        Bienvenido al Servicio
+    </header>
 
-  <div class="menu">
-    <button onclick="abrirPDF()">⚠️ ¡Importante leer!</button>
-    <button onclick="toggleSubmenu()">📱 Aplicaciones ▼</button>
-    <div class="submenu" id="submenu">
-      <button onclick="descargar('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=1')">📺 Spinning TV</button>
-      <button onclick="descargar('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=1')">📺 Spinning IBO Player</button>
-      <button onclick="descargar('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=1')">📺 Spinning MATE</button>
-      <button onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">💻 APP Apple y PC</button>
-    </div>
-  </div>
-</div>
-
-<footer>© 2025 1919Plus | Todos los derechos reservados</footer>
-
-<a href="https://wa.me/34603102438?text=Hola,%20necesito%20ayuda" target="_blank" class="whatsapp-btn">
-  <i class="fab fa-whatsapp"></i> CONTACTA
-</a>
-
-<!-- PDF Modal -->
-<div class="modal" id="visorPDF">
-  <div class="modal-content">
-    <button class="close-btn" onclick="cerrarPDF()">✖</button>
-    <canvas id="pdfCanvas"></canvas>
-    <div class="pdf-controls">
-      <button onclick="prevPage()">◀ Anterior</button>
-      <span id="pageNum">1 / 1</span>
-      <button onclick="nextPage()">Siguiente ▶</button>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.114/pdf.min.js"></script>
-<script>
-let pdfDoc=null,pageNum=1;
-const canvas=document.getElementById('pdfCanvas');
-const ctx=canvas.getContext('2d');
-
-async function abrirPDF(){
-  const url='https://www.dropbox.com/s/tuArchivo/FAQ.pdf?dl=1'; // Cambia por tu PDF
-  pdfDoc=await pdfjsLib.getDocument(url).promise;
-  pageNum=1;
-  renderPage();
-  document.getElementById('visorPDF').style.display='flex';
-}
-
-function cerrarPDF(){
-  document.getElementById('visorPDF').style.display='none';
-  pdfDoc=null;
-}
-
-async function renderPage(){
-  if(!pdfDoc) return;
-  const page=await pdfDoc.getPage(pageNum);
-  const viewport=page.getViewport({scale:1.2});
-  const scale=Math.min((canvas.parentElement.clientWidth/viewport.width),(canvas.parentElement.clientHeight/viewport.height));
-  const scaledViewport=page.getViewport({scale});
-  canvas.height=scaledViewport.height;
-  canvas.width=scaledViewport.width;
-  await page.render({canvasContext:ctx,viewport:scaledViewport}).promise;
-  document.getElementById('pageNum').innerText=`${pageNum} / ${pdfDoc.numPages}`;
-}
-
-function nextPage(){ if(pdfDoc&&pageNum<pdfDoc.numPages){pageNum++; renderPage();} }
-function prevPage(){ if(pdfDoc&&pageNum>1){pageNum--; renderPage();} }
-
-function toggleSubmenu(){
-  const sm=document.getElementById('submenu');
-  sm.style.display=sm.style.display==='flex'?'none':'flex';
-}
-
-function descargar(url){
-  if(url.includes('dropbox')){
-    const a=document.createElement('a');
-    a.href=url;
-    a.download='';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }else{ window.open(url,'_blank'); }
-  alert('✅ Descarga iniciada');
-}
-
-window.addEventListener('resize',()=>{if(pdfDoc) renderPage();});
-</script>
+    <main>
+        <div class="iframe-container">
+            <iframe src="leer.html" title="Información Importante"></iframe>
+        </div>
+    </main>
 
 </body>
 </html>
