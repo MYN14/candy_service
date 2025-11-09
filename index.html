@@ -68,10 +68,14 @@
       border-radius: 10px;
       font-size: 1.2em;
       cursor: pointer;
-      margin-top: 40px;
+      margin-top: 25px;
       font-weight: bold;
       box-shadow: 0 0 15px #ff660060;
       transition: background-color 0.2s ease;
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .download-btn:hover {
@@ -135,7 +139,9 @@
 
   <div id="content">
     <h2>Aplicaciones disponibles</h2>
-    <button class="download-btn" onclick="descargarApp()">📺 <b>Descargar Spinning TV</b></button>
+    <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
+    <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
+    <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
   </div>
 
   <div id="toast" class="toast">Descarga iniciada ✅</div>
@@ -156,7 +162,9 @@
         if (section === 'apps') {
           content.innerHTML = `
             <h2>Aplicaciones disponibles</h2>
-            <button class="download-btn" onclick="descargarApp()">📺 <b>Descargar Spinning TV</b></button>
+            <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
+            <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
+            <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
           `;
         } else if (section === 'leer') {
           content.innerHTML = `
@@ -167,13 +175,23 @@
       });
     });
 
-    // Descargar APK
-    function descargarApp() {
-      window.location.href =
-        'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=gmswll3y&dl=0';
+    // Funciones de descarga
+    function descargarApp1() {
+      window.location.href = 'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=gmswll3y&dl=0';
       mostrarToast();
     }
 
+    function descargarApp2() {
+      window.location.href = 'https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=oqpa4f3w&dl=0';
+      mostrarToast();
+    }
+
+    function descargarApp3() {
+      window.location.href = 'https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=1eht75wo&dl=0';
+      mostrarToast();
+    }
+
+    // Mensaje de confirmación
     function mostrarToast() {
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
