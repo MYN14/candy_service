@@ -154,8 +154,38 @@
       box-shadow: 0 0 25px #25D366, 0 0 30px #ff6600;
     }
 
+    /* 🔸 INSTAGRAM LINKS 🔸 */
+    .instagram-links {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .insta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .insta img {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 6px #ff6600);
+    }
+
+    .insta:hover {
+      transform: scale(1.1);
+      color: #ff6600;
+    }
+
     footer {
-      margin-top: 50px;
+      margin-top: 30px;
       padding: 20px;
       background-color: #111;
       border-top: 1px solid #222;
@@ -221,6 +251,18 @@
       <p>Versión disponible para dispositivos Apple (App Store)</p>
       <button class="download-btn" onclick="descargarApp4()">🍏 <b>Descargar App para Apple</b></button>
     </div>
+  </div>
+
+  <!-- 🔸 INSTAGRAMS -->
+  <div class="instagram-links">
+    <a href="https://www.instagram.com/dcgeventos" target="_blank" class="insta">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      <span>@dcgeventos</span>
+    </a>
+    <a href="https://www.instagram.com/imprimepubli" target="_blank" class="insta">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      <span>@imprimepubli</span>
+    </a>
   </div>
 
   <footer>
@@ -300,13 +342,11 @@
       mostrarToast();
     }
 
-    // Mensaje de confirmación
     function mostrarToast() {
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    // Función de soporte WhatsApp
     function abrirWhatsapp() {
       window.open('https://wa.me/34603102438', '_blank');
     }
