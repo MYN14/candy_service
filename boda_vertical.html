@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anuncio Vertical — Humo de Colores</title>
+  <style>
+    :root {
+      --dorado: #d4af37;
+      --negro: #0a0a0a;
+      --gris: #1b1b1b;
+      --blanco: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, rgba(30,30,30,0.95), rgba(15,15,15,0.98));
+      border-radius: 20px;
+      border: 1px solid rgba(212,175,55,0.25);
+      box-shadow: 0 0 30px rgba(212,175,55,0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%);
+      filter: blur(70px);
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .glow.g1 { top: -10%; left: -15%; }
+    .glow.g2 { bottom: -10%; right: -15%; }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-25px); }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 25px 20px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      color: var(--dorado);
+      text-shadow: 0 0 10px rgba(212,175,55,0.5);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      color: #eee;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: var(--dorado);
+      text-shadow: 0 0 15px rgba(212,175,55,0.4);
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin-top: 15px;
+      box-shadow: 0 0 20px rgba(212,175,55,0.25);
+    }
+
+    .cta {
+      font-size: 1.05rem;
+      color: var(--dorado);
+      margin-top: 20px;
+      font-weight: 600;
+    }
+
+    .phone {
+      margin-top: 8px;
+      font-size: 1.3rem;
+      color: var(--blanco);
+      background: rgba(212,175,55,0.15);
+      padding: 10px 16px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(212,175,55,0.2);
+    }
+
+    footer {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 25px;
+    }
+
+    /* 💡 Horizontal layout */
+    @media (orientation: landscape) {
+      .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        max-width: 850px;
+        padding: 20px;
+      }
+
+      video {
+        width: 50%;
+        border-radius: 15px;
+        margin: 0 20px;
+      }
+
+      .content {
+        width: 50%;
+        padding: 20px;
+      }
+
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.1rem; }
+      p { font-size: 1rem; }
+      .phone { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+
+    <div class="content">
+      <h1>💍 ¿Te casas en 2026?</h1>
+      <h2>¡Mira la nueva tendencia para bodas!</h2>
+      <div class="highlight">✨ HUMO DE COLORES ✨</div>
+      <p>Una experiencia visual impresionante para tu gran día,<br>
+         perfecta también para <span class="highlight">revelaciones de sexo</span> 💙💗</p>
+
+      <video controls playsinline preload="metadata" poster="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Smoke_colored_background.jpg/800px-Smoke_colored_background.jpg">
+        <source src="https://github.com/MYN14/candy_service/raw/main/VID-20251110-WA0028.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+
+      <div class="cta">📞 ¡Pide más información ahora!</div>
+      <div class="phone">925 119 908</div>
+
+      <footer>© 2025 1919Plus Services | Humo de colores para bodas y eventos</footer>
+    </div>
+  </div>
+
+</body>
+</html>
