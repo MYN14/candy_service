@@ -5,99 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1919Plus Services</title>
 <style>
-:root{
+:root {
   --naranja:#ff6600;
   --naranja-light:#ff8533;
   --negro:#0b0b0c;
   --blanco:#fff;
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
-body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1.4;text-align:center;transition:background 0.3s ease}
+body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1.4;text-align:center;}
 
-/* Fondos y glow */
+/* Fondo */
 .background{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%, rgba(255,102,0,0.08), transparent 30%), radial-gradient(circle at 85% 80%, rgba(255,102,0,0.02), transparent 30%), var(--negro);}
-.glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(255,102,0,0.25) 0%, transparent 70%);filter:blur(50px);animation:float 12s ease-in-out infinite alternate;}
-.glow.g1{top:8%;left:5%;animation-delay:0s}
-.glow.g2{bottom:10%;right:8%;animation-delay:3s}
-@keyframes float{from{transform:translateY(0)}to{transform:translateY(-40px)}}
+.glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(255,102,0,0.25) 0%, transparent 70%);filter:blur(60px);}
+.glow.g1{top:10%;left:5%}
+.glow.g2{bottom:10%;right:8%}
 
-/* Header */
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.8);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.15)}
-header img{height:46px;object-fit:contain;filter:drop-shadow(0 0 6px var(--naranja))}
+/* Cabecera */
+header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.85);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.15);}
+header img{height:46px;object-fit:contain;filter:drop-shadow(0 0 6px var(--naranja));}
 
-/* Botones de cabecera con glow animado */
-nav{display:flex;gap:12px;align-items:center}
+/* Botones del menú */
+nav{display:flex;gap:10px;}
 nav a{
-  flex:1;
-  text-align:center;
   color:var(--blanco);
   text-decoration:none;
   font-weight:600;
-  font-size:0.95rem;
+  font-size:0.9rem;
   padding:10px 14px;
   border-radius:10px;
-  transition: all 0.3s ease;
-  cursor:pointer;
   background:rgba(20,20,20,0.6);
-  position:relative;
+  transition:all 0.3s ease;
+  cursor:pointer;
 }
-nav a::before {
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:10px;
-  background:radial-gradient(circle, var(--naranja-light), transparent 70%);
-  opacity:0;
-  transition:opacity 0.3s ease;
-  filter:blur(12px);
-  z-index:-1;
+nav a:hover, nav a.active{
+  background:var(--naranja);
+  color:var(--negro);
+  box-shadow:0 0 15px var(--naranja-light),0 0 25px var(--naranja);
 }
-nav a:hover::before {opacity:1;}
-nav a.active::before {opacity:1;}
-nav a:hover, nav a.active {color:var(--negro); background:var(--naranja); box-shadow:0 0 12px var(--naranja-light),0 0 20px var(--naranja);}
-@keyframes glowPulse {0%{box-shadow:0 0 12px var(--naranja-light),0 0 20px var(--naranja);}50%{box-shadow:0 0 20px var(--naranja),0 0 30px var(--naranja-light);}100%{box-shadow:0 0 12px var(--naranja-light),0 0 20px var(--naranja);}}
-nav a.active{animation:glowPulse 2s infinite alternate}
 
-/* Section y animaciones fade */
-section{padding:40px 16px;text-align:center;max-width:1100px;margin:0 auto;opacity:0;transform:translateY(30px) scale(0.95);transition: opacity 0.5s ease, transform 0.5s ease;display:none;}
-section.active{display:block;}
-section.showing{opacity:1;transform:translateY(0) scale(1);}
-
-/* Títulos con neón pulsante */
-section h2 {color: var(--naranja);text-shadow:0 0 4px var(--naranja),0 0 8px var(--naranja),0 0 12px var(--naranja-light),0 0 16px var(--naranja-light);animation: neonPulse 2s ease-in-out infinite alternate;}
-@keyframes neonPulse{0%{text-shadow:0 0 4px var(--naranja),0 0 8px var(--naranja),0 0 12px var(--naranja-light),0 0 16px var(--naranja-light);color:var(--naranja);}50%{text-shadow:0 0 6px var(--naranja-light),0 0 12px var(--naranja-light),0 0 18px var(--naranja),0 0 24px var(--naranja);color:#ff7f33;}100%{text-shadow:0 0 4px var(--naranja),0 0 8px var(--naranja),0 0 12px var(--naranja-light),0 0 16px var(--naranja-light);color:var(--naranja);}}
+/* Secciones */
+section{display:none;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;padding:40px 15px;max-width:1000px;margin:auto;}
+section.active{display:block;opacity:1;transform:translateY(0);}
+section h2{color:var(--naranja);margin-bottom:25px;font-size:1.4rem;text-shadow:0 0 6px var(--naranja);}
 
 /* Apps */
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:20px}
-.app-card{background:linear-gradient(180deg, rgba(25,25,25,0.95), rgba(18,18,18,0.95));padding:20px;border-radius:12px;border:1px solid rgba(255,102,0,0.15);box-shadow:0 0 15px rgba(0,0,0,0.4);opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;}
-.app-card h3{color:var(--naranja);margin-bottom:8px;font-size:1.05rem}
-.app-card p{color:#cfcfcf;font-size:0.92rem;margin-bottom:14px}
-.download-btn{background:var(--naranja);color:var(--negro);padding:12px 22px;border-radius:10px;border:none;font-weight:bold;cursor:pointer;font-size:1rem;box-shadow:0 0 12px rgba(255,102,0,0.38),0 0 25px rgba(255,102,0,0.25);transition:all 0.25s ease-in-out, box-shadow 1s ease-in-out;}
-.download-btn:hover{transform:scale(1.08);box-shadow:0 0 30px var(--naranja),0 0 50px var(--naranja-light),0 0 80px var(--naranja-light);}
-.download-btn.ghost{background:transparent;color:var(--naranja);border:2px solid var(--naranja);box-shadow:0 0 12px rgba(255,102,0,0.25);}
-.download-btn.ghost:hover{box-shadow:0 0 20px var(--naranja),0 0 40px var(--naranja-light);transform:scale(1.08);}
-
-/* Animación lateral alternada */
-.app-card.show-left{transform:translateX(-100px) scale(0.95);opacity:0;}
-.app-card.show-left.show{transform:translateX(0) scale(1);opacity:1;transition:transform 0.6s ease, opacity 0.6s ease;}
-.app-card.show-right{transform:translateX(100px) scale(0.95);opacity:0;}
-.app-card.show-right.show{transform:translateX(0) scale(1);transition:transform 0.6s ease, opacity 0.6s ease;}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:20px;}
+.app-card{background:rgba(20,20,20,0.9);padding:20px;border-radius:12px;border:1px solid rgba(255,102,0,0.25);box-shadow:0 0 15px rgba(255,102,0,0.15);}
+.app-card h3{color:var(--naranja);margin-bottom:8px;font-size:1rem;}
+.app-card p{color:#ccc;font-size:0.9rem;margin-bottom:14px;}
+.download-btn{background:var(--naranja);color:var(--negro);padding:10px 20px;border-radius:8px;border:none;font-weight:bold;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.3);transition:all 0.25s ease;}
+.download-btn:hover{transform:scale(1.05);box-shadow:0 0 25px var(--naranja-light),0 0 40px var(--naranja);}
+.download-btn.ghost{background:transparent;color:var(--naranja);border:2px solid var(--naranja);}
+.download-btn.ghost:hover{background:var(--naranja);color:var(--negro);}
 
 /* Instagram */
-.insta-links{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:40px 0}
-.insta-links a{display:flex;align-items:center;gap:8px;color:#ddd;text-decoration:none;font-size:0.95rem}
-.insta-links img{width:22px;height:22px;filter:drop-shadow(0 0 6px var(--naranja));border-radius:5px}
+.insta-links{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:40px 0;}
+.insta-links a{display:flex;align-items:center;gap:8px;color:#ddd;text-decoration:none;font-size:0.95rem;}
+.insta-links img{width:22px;height:22px;filter:drop-shadow(0 0 6px var(--naranja));border-radius:5px;}
 
-/* Footer / Anuncios */
-footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px solid rgba(255,102,0,0.15);backdrop-filter:blur(6px);text-align:center}
-footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
-.ann-frame{width:100%;max-width:980px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+/* Footer */
+footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px solid rgba(255,102,0,0.15);}
+footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px;}
+.ann-frame{width:100%;max-width:900px;margin:auto;border-radius:10px;overflow:hidden;}
 
 /* WhatsApp */
-.whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:none;box-shadow:0 6px 18px rgba(37,211,102,0.15);cursor:pointer;z-index:60}
-.whatsapp-label{position:fixed;right:92px;bottom:28px;background:rgba(0,0,0,0.6);color:#fff;padding:8px 12px;border-radius:8px;font-weight:600;border:1px solid rgba(255,255,255,0.03);opacity:0.95}
+.whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:none;box-shadow:0 6px 18px rgba(37,211,102,0.3);cursor:pointer;z-index:50;}
+.whatsapp-label{position:fixed;right:90px;bottom:28px;background:rgba(0,0,0,0.6);color:#fff;padding:8px 12px;border-radius:8px;font-weight:600;border:1px solid rgba(255,255,255,0.05);opacity:0.9;}
 
-@media (max-width:600px){.insta-links{gap:18px}}
+@media(max-width:600px){nav{gap:6px;}nav a{padding:8px 10px;font-size:0.85rem;}}
 </style>
 </head>
 <body>
@@ -108,7 +83,7 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 </div>
 
 <header>
-  <img src="logo.jpg" alt="Logo 1919Plus Services">
+  <img src="logo.jpg" alt="Logo">
   <nav>
     <a data-section="leer" class="active">¡Importante Leer!</a>
     <a data-section="apps">Apps</a>
@@ -116,16 +91,16 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
   </nav>
 </header>
 
-<!-- leer.html -->
-<section id="leer" class="active showing">
+<!-- Sección Leer -->
+<section id="leer" class="active">
   <h2>📖 Información importante</h2>
-  <iframe class="leer-frame" src="leer.html" style="width:100%; height:80vh; border:none; border-radius:8px;"></iframe>
+  <iframe src="leer.html" style="width:100%;height:75vh;border:none;border-radius:8px;"></iframe>
 </section>
 
-<!-- Apps -->
+<!-- Sección Apps -->
 <section id="apps">
   <h2>Aplicaciones disponibles</h2>
-  <div class="apps" id="apps-container">
+  <div class="apps">
     <div class="app-card">
       <h3>Spinning TV</h3>
       <p>App con VPN integrada (recomendada)</p>
@@ -152,18 +127,18 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 <!-- Instagram -->
 <div class="insta-links">
   <a href="https://www.instagram.com/dcgeventos" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @dcgeventos
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt=""> @dcgeventos
   </a>
   <a href="https://www.instagram.com/imprimepubli" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @imprimepubli
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt=""> @imprimepubli
   </a>
 </div>
 
-<!-- Anuncios -->
+<!-- Sección Anuncio -->
 <footer id="anuncios">
-  <h2>🎉 Anuncios</h2>
+  <h2>🎉 Anuncio</h2>
   <div class="ann-frame" id="anuncio-frame"></div>
-  <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem">
+  <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem;">
     © 2025 1919Plus Services | Derechos reservados
   </p>
 </footer>
@@ -173,59 +148,33 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 <button class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">💬</button>
 
 <script>
-function descargar(url){try{window.location.href=url}catch(e){window.open(url,'_blank');}}
-
-// SPA navegación con fade y animación lateral
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
-const appCards = document.querySelectorAll('.app-card');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.forEach(l => l.classList.remove('active'));
+function descargar(url){window.location.href=url;}
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('nav a');
+navLinks.forEach(link=>{
+  link.addEventListener('click',()=>{
+    navLinks.forEach(l=>l.classList.remove('active'));
     link.classList.add('active');
-    const target = link.getAttribute('data-section');
-
-    sections.forEach(sec => {
-      if (sec.id === target) {
-        sec.style.display = 'block';
-        setTimeout(() => { 
-          sec.classList.add('showing'); 
-
-          if(target==='apps'){
-            appCards.forEach((card,i)=>{
-              if(i%2===0){card.classList.add('show-left');} 
-              else {card.classList.add('show-right');}
-              setTimeout(()=>card.classList.add('show'), i*200);
-            });
-          }
-
-        }, 20);
-      } else {
-        sec.classList.remove('showing');
-        setTimeout(()=>{sec.style.display='none';}, 500);
-        appCards.forEach(card=>card.classList.remove('show','show-left','show-right'));
-      }
+    const target=link.getAttribute('data-section');
+    sections.forEach(sec=>{
+      sec.classList.remove('active');
+      if(sec.id===target){sec.classList.add('active');}
     });
-
-    if(target==='anuncios'){cargarAnuncio();}
+    if(target==='anuncios') cargarAnuncio();
   });
 });
-
-// Cargar anuncio solo cuando se pulsa
-function cargarAnuncio() {
-  const frame = document.getElementById('anuncio-frame');
-  frame.innerHTML = '';
-  const iframe = document.createElement('iframe');
-  iframe.setAttribute('frameborder','0');
-  iframe.setAttribute('title','Anuncio boda');
-  iframe.setAttribute('src','boda.html');
-  iframe.style.width='100%';
-  iframe.style.height='420px';
-  iframe.style.borderRadius='10px';
-  frame.appendChild(iframe);
+function cargarAnuncio(){
+  const frame=document.getElementById('anuncio-frame');
+  if(!frame.innerHTML){
+    const iframe=document.createElement('iframe');
+    iframe.src='boda.html';
+    iframe.style.width='100%';
+    iframe.style.height='420px';
+    iframe.style.border='none';
+    iframe.style.borderRadius='10px';
+    frame.appendChild(iframe);
+  }
 }
 </script>
-
 </body>
 </html>
