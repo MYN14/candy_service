@@ -9,15 +9,9 @@
   header{background:#111;padding:15px 0;box-shadow:0 0 15px #ff660080;}
   header img{height:90px;width:90px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px #ff6600;}
   nav{display:flex;justify-content:center;background:#1a1a1a;border-top:1px solid #222;border-bottom:1px solid #222;flex-wrap:wrap;}
-  nav button{background:transparent;color:#ff6600;border:none;padding:15px 25px;font-size:1em;cursor:pointer;transition:all 0.2s ease;}
-  nav button:hover,nav button.active{background:#ff6600;color:#0b0b0c;box-shadow:0 0 10px #ff6600;}
+  nav button{background:transparent;color:#ff6600;border:none;padding:15px 25px;font-size:1em;cursor:pointer;transition:all 0.2s ease;margin:5px;}
+  nav button:hover,nav button.active{background:#ff6600;color:#0b0b0c;box-shadow:0 0 10px #ff6600;border-radius:8px;}
   #content{padding:20px;}
-  .app-card{background:#111;border:1px solid #222;border-radius:12px;margin:25px auto;padding:25px;max-width:500px;box-shadow:0 0 10px #ff660030;transition:transform 0.2s ease, box-shadow 0.2s ease;}
-  .app-card:hover{transform:translateY(-4px);box-shadow:0 0 15px #ff660060;}
-  .app-card p{color:#ccc;font-size:0.95em;margin-bottom:15px;}
-  .download-btn{background:#ff6600;color:#0b0b0c;border:none;padding:16px 35px;border-radius:10px;font-size:1.1em;cursor:pointer;font-weight:bold;box-shadow:0 0 15px #ff660060;transition:background 0.2s ease;}
-  .download-btn:hover{background:#ff8533;}
-  iframe{width:100%;height:80vh;border:none;border-radius:8px;background:#111;margin-top:10px;}
   .toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#111;border:1px solid #ff6600;color:#ff6600;padding:10px 25px;border-radius:6px;opacity:0;transition:opacity 0.4s ease;z-index:999;}
   .toast.show{opacity:1;}
   .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 18px;font-size:1em;font-weight:bold;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 15px #25D36670,0 0 25px #ff660070;transition:transform 0.3s ease,box-shadow 0.3s ease;z-index:1000;gap:8px;}
@@ -26,7 +20,11 @@
   footer{margin-top:40px;padding:20px;background:#111;color:#aaa;font-size:0.9em;}
   footer img{width:22px;vertical-align:middle;margin-right:8px;}
   footer .insta{display:inline-flex;align-items:center;gap:8px;color:#ff6600;font-weight:bold;margin:0 8px;}
-  @media(max-width:600px){nav{flex-direction:column;}nav button{width:100%;border-top:1px solid #222;}.app-card{width:90%;}.whatsapp-float{bottom:20px;right:20px;padding:12px 16px;}}
+  .container{max-width:500px;margin:0 auto;text-align:center;}
+  .container img{max-width:40%;height:auto;border-radius:50%;box-shadow:0 0 10px #ff6600;}
+  .container .link{display:inline-block;padding:12px 25px;margin:10px 0;background:#ff6600;color:#0b0b0c;font-weight:bold;text-decoration:none;border-radius:8px;box-shadow:0 0 10px #ff660030;transition:0.2s;}
+  .container .link:hover{background:#ff8533;}
+  @media(max-width:600px){nav{flex-direction:column;}nav button{width:90%;}.container img{max-width:60%;}}
 </style>
 </head>
 <body>
@@ -42,7 +40,8 @@
 </nav>
 
 <div id="content">
-  <iframe src="leer.html" title="Información importante"></iframe>
+  <!-- Inicio con leer.html -->
+  <iframe src="leer.html" title="Información importante" style="width:100%; height:80vh; border:none; border-radius:8px; background:#111;"></iframe>
 </div>
 
 <div id="toast" class="toast">Descarga iniciada ✅</div>
@@ -72,58 +71,31 @@ buttons.forEach(btn=>{
     const section=btn.getAttribute('data-section');
 
     if(section==='leer'){
-      content.innerHTML=`<iframe src="leer.html" title="Información importante"></iframe>`;
+      content.innerHTML=`<iframe src="leer.html" title="Información importante" style="width:100%; height:80vh; border:none; border-radius:8px; background:#111;"></iframe>`;
     } else if(section==='apps'){
       content.innerHTML=`
-        <div class="app-card">
-          <p>App con VPN integrada (recomendada)</p>
-          <button class="download-btn" onclick="descargarDropbox('https://www.dropbox.com/s/1hzua9lo82z59keaqos69/SpinningTV-7.0-v910-vpn-1.apk?dl=1')">📺 <b>Descargar Spinning TV</b></button>
-        </div>
-
-        <div class="app-card">
-          <p>App con una interfaz diferente (no incluye VPN)</p>
-          <button class="download-btn" onclick="descargarDropbox('https://www.dropbox.com/s/39ir2t1v0f1pc3s2lhouq/SpinningTVIBO_ZIP806_signed.apk?dl=1')">📺 <b>Descargar Spinning TV IBO</b></button>
-        </div>
-
-        <div class="app-card">
-          <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
-          <button class="download-btn" onclick="descargarDropbox('https://www.dropbox.com/s/gq535sb8rdsqesak9w276/SpinningTVMate_ZIP96_signed.apk?dl=1')">📺 <b>Descargar Spinning Mate</b></button>
-        </div>
-
-        <div class="app-card">
-          <p>Versión disponible para dispositivos Apple (App Store)</p>
-          <button class="download-btn" onclick="descargarApp4()">🍏 <b>Aplicación para Apple</b></button>
+        <div class="container">
+          <img src="logo.jpg" alt="Logo del servicio">
+          <a class="link" href="https://www.dropbox.com/s/1hzua9lo82z59keaqos69/SpinningTV-7.0-v910-vpn-1.apk?dl=1" target="_blank">📺 Descargar Spinning TV</a>
+          <a class="link" href="https://www.dropbox.com/s/39ir2t1v0f1pc3s2lhouq/SpinningTVIBO_ZIP806_signed.apk?dl=1" target="_blank">📺 Descargar Spinning TV IBO</a>
+          <a class="link" href="https://www.dropbox.com/s/gq535sb8rdsqesak9w276/SpinningTVMate_ZIP96_signed.apk?dl=1" target="_blank">📺 Descargar Spinning Mate</a>
         </div>
       `;
     } else if(section==='anuncios'){
-      content.innerHTML=`<iframe src="boda.html" title="Anuncio boda"></iframe>`;
+      content.innerHTML=`<iframe src="boda.html" title="Anuncio boda" style="width:100%; height:80vh; border:none; border-radius:8px; background:#111;"></iframe>`;
     }
   });
 });
 
-// Función de descarga directa usando iframe oculto
-function descargarDropbox(url){
-  mostrarToast();
-  const iframe=document.createElement('iframe');
-  iframe.style.display='none';
-  iframe.src=url;
-  document.body.appendChild(iframe);
-  // Opcional: eliminar el iframe después de 5s
-  setTimeout(()=>document.body.removeChild(iframe),5000);
-}
-
-function descargarApp4(){
-  window.location.href='https://apps.apple.com/us/app/hot-player/id6695762404';
-  mostrarToast();
-}
-
-function mostrarToast(){
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),2000);
-}
-
 function abrirWhatsapp(){
   window.open('https://wa.me/34603102438','_blank');
+}
+
+// Mostramos toast al hacer click en apps (opcional, si quieres activar)
+function mostrarToast(msg){
+  toast.innerText = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2000);
 }
 </script>
 
