@@ -22,16 +22,34 @@ body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1
 @keyframes float{from{transform:translateY(0)}to{transform:translateY(-40px)}}
 
 /* Header */
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.6);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.15)}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.8);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.15)}
 header img{height:46px;object-fit:contain;filter:drop-shadow(0 0 6px var(--naranja))}
-nav{display:flex;gap:16px;align-items:center}
-nav a{color:var(--blanco);text-decoration:none;font-weight:600;font-size:0.95rem;padding:6px 8px;border-radius:6px;transition:color .18s,background .18s;cursor:pointer}
-nav a.active{color:var(--negro);background:var(--naranja)}
-nav a:hover{color:var(--naranja)}
+
+/* Botones de cabecera */
+nav{display:flex;gap:12px;align-items:center}
+nav a{flex:1;text-align:center;color:var(--blanco);text-decoration:none;font-weight:600;font-size:0.95rem;padding:10px 14px;border-radius:10px;transition:all .2s;cursor:pointer;background:rgba(20,20,20,0.6);}
+nav a.active{color:var(--negro);background:var(--naranja);box-shadow:0 0 12px var(--naranja-light);}
+nav a:hover{color:var(--naranja);background:rgba(20,20,20,0.8);box-shadow:0 0 8px var(--naranja-light);}
 
 /* Section y animaciones */
 section{padding:40px 16px;text-align:center;max-width:1100px;margin:0 auto;opacity:0;transform:translateY(30px) scale(0.95);transition:opacity 0.6s ease, transform 0.6s ease;display:none;}
 section.active{display:block;opacity:1;transform:translateY(0) scale(1);}
+
+/* Títulos con neón pulsante */
+section h2 {
+  color: var(--naranja);
+  text-shadow:
+    0 0 4px var(--naranja),
+    0 0 8px var(--naranja),
+    0 0 12px var(--naranja-light),
+    0 0 16px var(--naranja-light);
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+@keyframes neonPulse {
+  0% {text-shadow:0 0 4px var(--naranja),0 0 8px var(--naranja),0 0 12px var(--naranja-light),0 0 16px var(--naranja-light);color:var(--naranja);}
+  50% {text-shadow:0 0 6px var(--naranja-light),0 0 12px var(--naranja-light),0 0 18px var(--naranja),0 0 24px var(--naranja);color:#ff7f33;}
+  100% {text-shadow:0 0 4px var(--naranja),0 0 8px var(--naranja),0 0 12px var(--naranja-light),0 0 16px var(--naranja-light);color:var(--naranja);}
+}
 
 /* Apps */
 .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:20px}
@@ -80,13 +98,13 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 
 <!-- leer.html -->
 <section id="leer" class="active">
-  <h2 style="color:var(--naranja);margin-bottom:10px;">📖 Información importante</h2>
-  <iframe class="leer-frame" src="leer.html" title="Información importante"></iframe>
+  <h2>📖 Información importante</h2>
+  <iframe class="leer-frame" src="leer.html" style="width:100%; height:80vh; border:none; border-radius:8px;"></iframe>
 </section>
 
 <!-- Apps -->
 <section id="apps">
-  <h2 style="color:var(--naranja);margin-bottom:20px;">Aplicaciones disponibles</h2>
+  <h2>Aplicaciones disponibles</h2>
   <div class="apps" id="apps-container">
     <div class="app-card">
       <h3>Spinning TV</h3>
@@ -113,8 +131,8 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 
 <!-- Juego -->
 <section id="juego">
-  <h2 style="color:var(--naranja);margin-bottom:10px;">🎮 Juego Candy Service</h2>
-  <iframe class="juego-frame" src="juego.html" title="Juego Candy Service"></iframe>
+  <h2>🎮 Juego Candy Service</h2>
+  <iframe class="juego-frame" src="juego.html" style="width:100%; height:80vh; border:none; border-radius:8px;"></iframe>
 </section>
 
 <!-- Instagram -->
@@ -127,9 +145,9 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
   </a>
 </div>
 
-<!-- Anuncios dinámicos -->
+<!-- Anuncios -->
 <footer id="anuncios">
-  <h2 style="color:var(--naranja);margin-bottom:12px;">🎉 Anuncios</h2>
+  <h2>🎉 Anuncios</h2>
   <div class="ann-frame" id="anuncio-frame"></div>
   <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem">
     © 2025 1919Plus Services | Derechos reservados
@@ -143,7 +161,7 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
 <script>
 function descargar(url){try{window.location.href=url}catch(e){window.open(url,'_blank');}}
 
-// Navegación SPA con fade-in y glow
+// SPA navegación
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('nav a');
 const appCards = document.querySelectorAll('.app-card');
@@ -176,7 +194,7 @@ navLinks.forEach(link=>{
   });
 });
 
-// Anuncios dinámicos según orientación
+// Cargar anuncio solo cuando se pulsa
 function cargarAnuncio() {
   const frame = document.getElementById('anuncio-frame');
   frame.innerHTML = '';
@@ -194,8 +212,6 @@ function cargarAnuncio() {
   iframe.style.borderRadius='10px';
   frame.appendChild(iframe);
 }
-cargarAnuncio();
-window.addEventListener('resize', cargarAnuncio);
 </script>
 
 </body>
