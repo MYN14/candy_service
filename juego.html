@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adivina la palabra – 7 letras</title>
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+  }
+  h1 { margin-bottom:10px; font-size:2rem; text-shadow:2px 2px 6px rgba(0,0,0,0.5);}
+  p { margin-bottom:20px; text-align:center; font-size:1rem; }
+
+  #pistas { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
+  #pistas button {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 18px;
+    border-radius:50px;
+    border:none;
+    background:linear-gradient(135deg, #ffecd2, #fcb69f);
+    color:#333;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    font-size:1rem;
+  }
+  #pistas button:hover { transform: scale(1.1); box-shadow:0 8px 16px rgba(0,0,0,0.4); }
+
+  .pista {
+    margin:15px 0;
+    padding:18px;
+    background: rgba(255,255,255,0.1);
+    border-radius:20px;
+    backdrop-filter: blur(15px);
+    display:none;
+    text-align:center;
+    font-size:1.1rem;
+    transition:all 0.5s ease;
+  }
+  .pista img {
+    max-width:250px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  .input-container { display:flex; gap:12px; margin-top:15px; flex-wrap:wrap; justify-content:center; }
+  input#guess {
+    padding:12px 16px;
+    border-radius:25px;
+    border:none;
+    width:180px;
+    text-align:center;
+    font-size:1rem;
+    outline:none;
+  }
+  button#comprobar {
+    padding:12px 18px;
+    border-radius:25px;
+    border:none;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 12px rgba(0,0,0,0.3);
+    font-size:1rem;
+    transition:all 0.3s ease;
+  }
+  button#comprobar:hover { transform:scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,0.4); }
+
+  #mensaje-premio { margin-top:10px; font-size:0.9rem; text-align:center; }
+
+  #resultado {
+    margin-top:25px;
+    font-weight:bold;
+    font-size:1.3rem;
+    text-shadow:1px 1px 4px rgba(0,0,0,0.5);
+    min-height:28px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Adivina la palabra</h1>
+<p>La palabra es de 7 letras.</p>
+
+<div id="pistas">
+  <button id="pistaBtn0" onclick="mostrarPista(0)">💡 Pista 1</button>
+  <button id="pistaBtn1" onclick="mostrarPista(1)">💡 Pista 2</button>
+  <button id="pistaBtn2" onclick="mostrarPista(2)">💡 Pista 3 (imagen)</button>
+</div>
+
+<div class="pista" id="pista0"></div>
+<div class="pista" id="pista1"></div>
+<div class="pista" id="pista2"></div>
+
+<div class="input-container">
+  <input type="text" id="guess" maxlength="7" placeholder="Escribe la palabra">
+  <button id="comprobar" onclick="comprobar()">Comprobar</button>
+</div>
+
+<div id="mensaje-premio">Si aciertas, tiene premio 😉</div>
+<div id="resultado"></div>
+
+<!-- Sonidos -->
+<audio id="acierto">
+  <source src="https://www.soundjay.com/buttons/sounds/button-10.mp3" type="audio/mpeg">
+</audio>
+<audio id="error">
+  <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Banco de palabras coherentes de 7 letras, algunas con Ñ
+const palabras = [
+  { palabra: 'CAMPAÑA', categoria: 'acción', img: 'https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'BAÑISTA', categoria: 'persona', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'MONTAÑA', categoria: 'lugar', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'FANTASÍA', categoria: 'imaginación', img: 'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'ESPEJOS', categoria: 'objeto', img: 'https://images.unsplash.com/photo-1531177075602-4b4dc444c4b7?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'CASCADA', categoria: 'naturaleza', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'BALONES', categoria: 'objeto', img: 'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'JARDÍN', categoria: 'naturaleza', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'PUENTES', categoria: 'construcción', img: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'CABAÑAS', categoria: 'lugar', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'MARINOS', categoria: 'profesión', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'CARTERO', categoria: 'profesión', img: 'https://images.unsplash.com/photo-1590080878869-6f0442b0bb5e?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'FLORECE', categoria: 'naturaleza', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'COCINAR', categoria: 'acción', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'AVIONES', categoria: 'medio de transporte', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'CAÑONES', categoria: 'naturaleza', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'MAÑANAS', categoria: 'tiempo', img: 'https://images.unsplash.com/photo-1501973801540-537f08ccae7d?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'MUEBLES', categoria: 'objeto', img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'CAMBIAR', categoria: 'acción', img: 'https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'TOMATES', categoria: 'alimento', img: 'https://images.unsplash.com/photo-1571047339867-5f2981e5d53d?auto=format&fit=crop&w=250&q=80' },
+  { palabra: 'PUÑALES', categoria: 'objeto', img: 'https://images.unsplash.com/photo-1528360983278-4f4d0a4be91c?auto=format&fit=crop&w=250&q=80' }
+];
+
+let palabraActual = palabras[Math.floor(Math.random()*palabras.length)];
+const pistasMostradas = [false,false,false];
+
+function mostrarPista(idx){
+  if(!pistasMostradas[idx]){
+    let pistaEl = document.getElementById('pista'+idx);
+    pistaEl.style.display = 'block';
+
+    const btn = document.getElementById('pistaBtn'+idx);
+    btn.style.background = 'linear-gradient(135deg, #a0c4ff, #4361ee)'; // cambio de color al pulsar
+    btn.style.color = '#fff';
+
+    if(idx===0){
+      pistaEl.textContent = `Pertenece a la categoría: ${palabraActual.categoria}.`;
+    } else if(idx===1){
+      pistaEl.textContent = `Empieza con "${palabraActual.palabra[0]}" y termina con "${palabraActual.palabra[palabraActual.palabra.length-1]}".`;
+    } else if(idx===2){
+      pistaEl.innerHTML = '';
+      let img = document.createElement('img');
+      img.src = palabraActual.img;
+      pistaEl.appendChild(img);
+    }
+
+    pistasMostradas[idx] = true;
+  }
+}
+
+function comprobar(){
+  const intento = document.getElementById('guess').value.toUpperCase().trim();
+  const resultadoEl = document.getElementById('resultado');
+  const aciertoSonido = document.getElementById('acierto');
+  const errorSonido = document.getElementById('error');
+
+  if(intento === palabraActual.palabra){
+    resultadoEl.textContent = `🎉 ¡Correcto! La palabra es ${palabraActual.palabra}. 🎉`;
+    aciertoSonido.play();
+  } else {
+    resultadoEl.textContent = '❌ Incorrecto, intenta otra vez.';
+    errorSonido.play();
+  }
+  document.getElementById('guess').value = '';
+}
+</script>
+
+</body>
+</html>
