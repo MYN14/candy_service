@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel del Servicio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1919Plus Services</title>
   <style>
+    :root {
+      --naranja: #ff6600;
+      --naranja-claro: #ff8533;
+      --fondo: #0b0b0c;
+      --gris: #ddd;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #0b0b0c;
-      color: #eee;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: var(--fondo);
+      color: var(--gris);
       text-align: center;
     }
 
     header {
       background-color: #111;
       padding: 15px 0;
-      box-shadow: 0 0 15px #ff660080;
+      box-shadow: 0 0 15px var(--naranja);
     }
 
     header img {
-      height: 80px;
       width: 80px;
-      object-fit: cover;
+      height: 80px;
       border-radius: 50%;
-      border: 2px solid #ff6600;
-      box-shadow: 0 0 10px #ff660060;
+      box-shadow: 0 0 20px var(--naranja);
+      object-fit: cover;
     }
 
     nav {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       background-color: #1a1a1a;
       border-top: 1px solid #222;
       border-bottom: 1px solid #222;
-      flex-wrap: wrap;
     }
 
     nav button {
-      background-color: transparent;
-      color: #ff6600;
+      background: transparent;
+      color: var(--naranja);
       border: none;
       padding: 15px 25px;
       font-size: 1em;
@@ -50,13 +55,30 @@
 
     nav button:hover,
     nav button.active {
-      background-color: #ff6600;
-      color: #0b0b0c;
-      box-shadow: 0 0 10px #ff6600;
+      background-color: var(--naranja);
+      color: var(--fondo);
+      box-shadow: 0 0 10px var(--naranja);
     }
 
-    #content {
-      padding: 20px;
+    section {
+      display: none;
+      padding: 25px 10px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: var(--naranja);
+      text-shadow: 0 0 6px var(--naranja);
+      margin-bottom: 20px;
     }
 
     .app-card {
@@ -82,8 +104,8 @@
     }
 
     .download-btn {
-      background-color: #ff6600;
-      color: #0b0b0c;
+      background-color: var(--naranja);
+      color: var(--fondo);
       border: none;
       padding: 16px 35px;
       border-radius: 10px;
@@ -95,7 +117,7 @@
     }
 
     .download-btn:hover {
-      background-color: #ff8533;
+      background-color: var(--naranja-claro);
     }
 
     iframe {
@@ -113,8 +135,8 @@
       left: 50%;
       transform: translateX(-50%);
       background-color: #111;
-      border: 1px solid #ff6600;
-      color: #ff6600;
+      border: 1px solid var(--naranja);
+      color: var(--naranja);
       padding: 10px 25px;
       border-radius: 6px;
       opacity: 0;
@@ -126,7 +148,7 @@
       opacity: 1;
     }
 
-    /* 🔥 BOTÓN FLOTANTE DE WHATSAPP 🔥 */
+    /* ✅ Botón flotante de WhatsApp */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
@@ -137,7 +159,7 @@
       border-radius: 50%;
       width: 60px;
       height: 60px;
-      font-size: 30px;
+      font-size: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,22 +174,27 @@
       box-shadow: 0 0 25px #25D366, 0 0 30px #ff6600;
     }
 
-    .instagrams {
+    .insta {
       margin-top: 40px;
-      font-size: 0.9em;
-      color: #ccc;
+      font-size: 1em;
     }
 
-    .instagrams img {
-      width: 20px;
-      vertical-align: middle;
-      margin-right: 8px;
+    .insta a {
+      color: var(--naranja);
+      text-decoration: none;
+      margin: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
     }
 
     footer {
-      margin-top: 40px;
-      color: #777;
-      font-size: 0.8em;
+      margin-top: 50px;
+      padding: 20px 10px;
+      border-top: 1px solid #222;
+      color: #888;
+      font-size: 0.9em;
     }
 
     @media (max-width: 600px) {
@@ -192,84 +219,87 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
-    <img src="logo.jpg" alt="Logo del servicio">
+    <img src="logo.jpg" alt="Logo del servicio" />
   </header>
 
   <nav>
-    <button class="menu-btn active" data-section="leer">📖 ¡Importante Leer!</button>
-    <button class="menu-btn" data-section="apps">📱 Aplicaciones</button>
-    <button class="menu-btn" data-section="anuncio">🎬 Anuncio</button>
+    <button class="menu-btn" data-section="leer">📖 ¡Importante Leer!</button>
+    <button class="menu-btn active" data-section="apps">📱 Aplicaciones</button>
+    <button class="menu-btn" data-section="anuncios">🎬 Anuncios</button>
   </nav>
 
-  <div id="content">
+  <!-- 📖 Importante Leer -->
+  <section id="leer">
+    <h2>Información Importante</h2>
     <iframe src="leer.html" title="Información importante"></iframe>
-  </div>
+  </section>
 
-  <div id="toast" class="toast">Descarga iniciada ✅</div>
+  <!-- 📱 Aplicaciones -->
+  <section id="apps" class="active">
+    <div class="app-card">
+      <p>App con VPN integrada (recomendada)</p>
+      <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
+    </div>
 
-  <!-- ✅ Botón flotante de soporte -->
-  <button class="whatsapp-float" onclick="abrirWhatsapp()" title="Contacta por WhatsApp">💬</button>
+    <div class="app-card">
+      <p>App con una interfaz diferente (no incluye VPN)</p>
+      <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning IBO</b></button>
+    </div>
 
-  <div class="instagrams">
-    <p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> @dcgeventos &nbsp;&nbsp;
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> @imprimepubli
-    </p>
+    <div class="app-card">
+      <p>App con interfaz tipo Netflix</p>
+      <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
+    </div>
+
+    <div class="app-card">
+      <p>Versión disponible para dispositivos Apple</p>
+      <button class="download-btn" onclick="descargarApp4()">🍏 <b>Aplicación para Apple</b></button>
+    </div>
+  </section>
+
+  <!-- 🎬 Anuncios -->
+  <section id="anuncios">
+    <h2>🎬 Anuncios</h2>
+    <iframe src="boda.html" title="Anuncio"></iframe>
+  </section>
+
+  <div class="insta">
+    <a href="https://instagram.com/dcgeventos" target="_blank">📸 @dcgeventos</a>
+    <a href="https://instagram.com/imprimepubli" target="_blank">📸 @imprimepubli</a>
   </div>
 
   <footer>
-    © 2025 1919Plus Services | Derechos reservados
+    <p>@2025 1919Plus Services | Derechos reservados</p>
   </footer>
+
+  <!-- Toast de confirmación -->
+  <div id="toast" class="toast">Descarga iniciada ✅</div>
+
+  <!-- 💬 Botón flotante -->
+  <button class="whatsapp-float" onclick="abrirWhatsapp()">🟢</button>
 
   <script>
     const buttons = document.querySelectorAll('.menu-btn');
-    const content = document.getElementById('content');
+    const sections = document.querySelectorAll('section');
     const toast = document.getElementById('toast');
 
-    // Navegación
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const section = btn.getAttribute('data-section');
 
-        if (section === 'leer') {
-          content.innerHTML = `<iframe src="leer.html" title="Información importante"></iframe>`;
-        } 
-        else if (section === 'apps') {
-          content.innerHTML = `
-            <div class="app-card">
-              <p>App con VPN integrada (recomendada)</p>
-              <button class="download-btn" onclick="descargarApp1()">📺 <b>Descargar Spinning TV</b></button>
-            </div>
-
-            <div class="app-card">
-              <p>App con una interfaz diferente (no incluye VPN)</p>
-              <button class="download-btn" onclick="descargarApp2()">📺 <b>Descargar Spinning TV IBO</b></button>
-            </div>
-
-            <div class="app-card">
-              <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
-              <button class="download-btn" onclick="descargarApp3()">📺 <b>Descargar Spinning Mate</b></button>
-            </div>
-
-            <div class="app-card">
-              <p>Aplicación para Apple</p>
-              <button class="download-btn" onclick="descargarApp4()">🍏 <b>App para Apple</b></button>
-            </div>
-          `;
-        } 
-        else if (section === 'anuncio') {
-          content.innerHTML = `<iframe src="boda.html" title="Anuncio de bodas"></iframe>`;
-        }
+        sections.forEach(sec => {
+          sec.classList.remove('active');
+          if (sec.id === section) sec.classList.add('active');
+        });
       });
     });
 
-    // Funciones de descarga (enlaces corregidos con ?dl=1)
+    // ✅ Enlaces de descarga corregidos con ?dl=1
     function descargarApp1() {
       window.location.href = 'https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=1';
       mostrarToast();
@@ -290,17 +320,14 @@
       mostrarToast();
     }
 
-    // Mensaje de confirmación
     function mostrarToast() {
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    // Función de soporte WhatsApp
     function abrirWhatsapp() {
       window.open('https://wa.me/34603102438', '_blank');
     }
   </script>
-
 </body>
 </html>
