@@ -5,237 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1919Plus Services</title>
 <style>
-:root {
-  --naranja:#ff6600;
-  --naranja-light:#ff8533;
-  --negro:#0b0b0c;
-  --blanco:#fff;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
-body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1.4;text-align:center;}
-
-/* Fondo decorativo */
-.background{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%, rgba(255,102,0,0.08), transparent 30%), radial-gradient(circle at 85% 80%, rgba(255,102,0,0.02), transparent 30%), var(--negro);}
-.glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(255,102,0,0.25) 0%, transparent 70%);filter:blur(60px);}
-.glow.g1{top:10%;left:5%}
-.glow.g2{bottom:10%;right:8%}
-
-/* Cabecera */
-header{
-  position:sticky;
-  top:0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 18px;
-  background:rgba(12,12,12,0.85);
-  backdrop-filter:blur(6px);
-  box-shadow:0 0 18px rgba(255,102,0,0.15);
-}
-header img{
-  height:60px;
-  width:60px;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid var(--naranja);
-  box-shadow:0 0 15px var(--naranja-light);
-}
-
-/* Navegación */
-nav{display:flex;gap:10px;}
-nav a{
-  color:var(--blanco);
-  text-decoration:none;
-  font-weight:600;
-  font-size:0.9rem;
-  padding:10px 14px;
-  border-radius:10px;
-  background:rgba(20,20,20,0.6);
-  transition:all 0.3s ease;
-  cursor:pointer;
-}
-nav a:hover, nav a.active{
-  background:var(--naranja);
-  color:var(--negro);
-  box-shadow:0 0 15px var(--naranja-light),0 0 25px var(--naranja);
-}
-
-/* Secciones */
-section{display:none;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;padding:40px 15px;max-width:1000px;margin:auto;}
-section.active{display:block;opacity:1;transform:translateY(0);}
-section h2{color:var(--naranja);margin-bottom:25px;font-size:1.4rem;text-shadow:0 0 6px var(--naranja);}
-
-/* Apps */
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:10px;}
-.app-card{background:rgba(20,20,20,0.9);padding:20px;border-radius:12px;border:1px solid rgba(255,102,0,0.25);box-shadow:0 0 15px rgba(255,102,0,0.15);}
-.app-card h3{color:var(--naranja);margin-bottom:8px;font-size:1rem;}
-.app-card p{color:#ccc;font-size:0.9rem;margin-bottom:14px;}
-.download-btn{
-  background:var(--naranja);
-  color:var(--negro);
-  padding:10px 20px;
-  border-radius:8px;
-  border:none;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 0 15px rgba(255,102,0,0.3);
-  transition:all 0.25s ease;
-}
-.download-btn:hover{transform:scale(1.05);box-shadow:0 0 25px var(--naranja-light),0 0 40px var(--naranja);}
-.download-btn.ghost{background:transparent;color:var(--naranja);border:2px solid var(--naranja);}
-.download-btn.ghost:hover{background:var(--naranja);color:var(--negro);}
-
-/* Instagram */
-.insta-links{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:40px 0;}
-.insta-links a{display:flex;align-items:center;gap:8px;color:#ddd;text-decoration:none;font-size:0.95rem;}
-.insta-links img{width:22px;height:22px;filter:drop-shadow(0 0 6px var(--naranja));border-radius:5px;}
-
-/* Footer */
-footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px solid rgba(255,102,0,0.15);}
-footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px;}
-.ann-frame{width:100%;max-width:900px;margin:auto;border-radius:10px;overflow:hidden;}
-
-/* WhatsApp flotante */
-.whatsapp-float{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  background:#25d366;
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 6px 18px rgba(37,211,102,0.3);
-  cursor:pointer;
-  z-index:50;
-  transition:transform 0.2s ease;
-}
-.whatsapp-float:hover{transform:scale(1.1);}
-.whatsapp-float img{width:36px;height:36px;filter:drop-shadow(0 0 4px #fff);}
-.whatsapp-label{
-  position:fixed;
-  right:90px;
-  bottom:28px;
-  background:rgba(0,0,0,0.6);
-  color:#fff;
-  padding:8px 12px;
-  border-radius:8px;
-  font-weight:600;
-  border:1px solid rgba(255,255,255,0.05);
-  opacity:0.9;
-}
-
-@media(max-width:600px){
-  nav{gap:6px;}
-  nav a{padding:8px 10px;font-size:0.85rem;}
-  .whatsapp-float{width:55px;height:55px;}
-  .whatsapp-float img{width:30px;height:30px;}
-}
+body{margin:0;padding:0;background:#0b0b0c;color:#eee;font-family:Arial,Helvetica,sans-serif;text-align:center;}
+header{background:#111;padding:15px 0;box-shadow:0 0 10px #ff660080;}
+header img{height:65px;width:65px;border-radius:50%;border:2px solid #ff6600;box-shadow:0 0 8px #ff6600;}
+nav{display:flex;justify-content:center;background:#1a1a1a;border-top:1px solid #222;border-bottom:1px solid #222;flex-wrap:wrap;}
+nav button{background:none;color:#ff6600;border:none;padding:12px 20px;cursor:pointer;font-weight:bold;}
+nav button:hover,nav button.active{background:#ff6600;color:#0b0b0c;box-shadow:0 0 10px #ff6600;}
+section{display:none;padding:20px;}
+section.active{display:block;}
+h2{color:#ff6600;text-shadow:0 0 6px #ff6600;}
+.app-card{background:#111;border:1px solid #222;border-radius:10px;margin:20px auto;padding:20px;max-width:450px;}
+.app-card p{color:#ccc;margin-bottom:15px;}
+button.download{background:#ff6600;color:#0b0b0c;border:none;padding:12px 25px;border-radius:8px;font-weight:bold;cursor:pointer;}
+button.download:hover{background:#ff8533;}
+iframe{width:100%;height:75vh;border:none;border-radius:8px;background:#111;}
+.insta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:30px 0;}
+.insta a{color:#ccc;text-decoration:none;font-size:0.9em;display:flex;align-items:center;gap:6px;}
+.insta img{width:20px;height:20px;filter:drop-shadow(0 0 6px #ff6600);}
+footer{margin-top:25px;padding:15px 0;background:#111;border-top:1px solid #222;color:#bbb;font-size:0.9em;}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 15px #25D36670;cursor:pointer;}
+.whatsapp-float img{width:30px;height:30px;}
+.whatsapp-label{position:fixed;right:85px;bottom:30px;background:#00000099;color:#fff;padding:6px 10px;border-radius:8px;font-size:0.85em;}
+@media(max-width:600px){.app-card{width:90%;}nav button{width:100%;border-top:1px solid #222;}}
 </style>
 </head>
 <body>
 
-<div class="background">
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-</div>
-
 <header>
   <img src="logo.jpg" alt="Logo">
-  <nav>
-    <a data-section="leer" class="active">¡Importante Leer!</a>
-    <a data-section="apps">Apps</a>
-    <a data-section="anuncios">Anuncio</a>
-  </nav>
 </header>
 
-<!-- Sección Leer -->
+<nav>
+  <button class="tab active" data-sec="leer">📖 ¡Importante Leer!</button>
+  <button class="tab" data-sec="apps">📱 Apps</button>
+  <button class="tab" data-sec="anuncio">🎉 Anuncio</button>
+</nav>
+
 <section id="leer" class="active">
-  <h2>📖 Información importante</h2>
-  <iframe src="leer.html" style="width:100%;height:75vh;border:none;border-radius:8px;"></iframe>
+  <h2>Información Importante</h2>
+  <iframe src="leer.html"></iframe>
 </section>
 
-<!-- Sección Apps -->
 <section id="apps">
-  <div class="apps">
-    <div class="app-card">
-      <h3>Spinning TV</h3>
-      <p>App con VPN integrada (recomendada)</p>
-      <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=0')">📺 Descargar</button>
-    </div>
-    <div class="app-card">
-      <h3>Spinning IBO</h3>
-      <p>App con una interfaz diferente (no incluye VPN)</p>
-      <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=0')">📺 Descargar</button>
-    </div>
-    <div class="app-card">
-      <h3>Spinning Mate</h3>
-      <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
-      <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=0')">📺 Descargar</button>
-    </div>
-    <div class="app-card">
-      <h3>Aplicación para Apple</h3>
-      <p>Disponible en App Store (Hot Player)</p>
-      <button class="download-btn ghost" onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">🍏 Abrir</button>
-    </div>
+  <div class="app-card">
+    <p>App con VPN integrada (recomendada)</p>
+    <button class="download" onclick="descargar('https://dl.dropboxusercontent.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?rlkey=022ez29jq7a7nqd5mag77andb&st=gmswll3y')">📺 Descargar Spinning TV</button>
+  </div>
+  <div class="app-card">
+    <p>App con una interfaz diferente (no incluye VPN)</p>
+    <button class="download" onclick="descargar('https://dl.dropboxusercontent.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?rlkey=se1wib8nkjr1m4m8nzsop9usb&st=oqpa4f3w')">📺 Descargar Spinning IBO</button>
+  </div>
+  <div class="app-card">
+    <p>App con interfaz adaptada a Películas y Series (tipo Netflix)</p>
+    <button class="download" onclick="descargar('https://dl.dropboxusercontent.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?rlkey=309hozu567ohaw9mfmf6veaf1&st=1eht75wo')">📺 Descargar Spinning Mate</button>
+  </div>
+  <div class="app-card">
+    <p>Disponible en App Store (Hot Player)</p>
+    <button class="download" onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">🍏 Aplicación para Apple</button>
   </div>
 </section>
 
-<!-- Instagram -->
-<div class="insta-links">
-  <a href="https://www.instagram.com/dcgeventos" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt=""> @dcgeventos
-  </a>
-  <a href="https://www.instagram.com/imprimepubli" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt=""> @imprimepubli
-  </a>
+<section id="anuncio">
+  <h2>Publicidad</h2>
+  <iframe src="boda.html" style="height:420px;"></iframe>
+</section>
+
+<div class="insta">
+  <a href="https://www.instagram.com/dcgeventos" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">@dcgeventos</a>
+  <a href="https://www.instagram.com/imprimepubli" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">@imprimepubli</a>
 </div>
 
-<!-- Sección Anuncio -->
-<footer id="anuncios">
-  <h2>🎉 Anuncio</h2>
-  <div class="ann-frame" id="anuncio-frame"></div>
-  <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem;">
-    © 2025 1919Plus Services | Derechos reservados
-  </p>
-</footer>
+<footer>© 2025 1919Plus Services | Derechos reservados</footer>
 
-<!-- Botón flotante WhatsApp -->
 <div class="whatsapp-label">Contacta</div>
-<button class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</button>
+<div class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</div>
 
 <script>
 function descargar(url){window.location.href=url;}
-const sections=document.querySelectorAll('section');
-const navLinks=document.querySelectorAll('nav a');
-navLinks.forEach(link=>{
-  link.addEventListener('click',()=>{
-    navLinks.forEach(l=>l.classList.remove('active'));
-    link.classList.add('active');
-    const target=link.getAttribute('data-section');
-    sections.forEach(sec=>{
-      sec.classList.remove('active');
-      if(sec.id===target){sec.classList.add('active');}
-    });
-    if(target==='anuncios') cargarAnuncio();
-  });
-});
-function cargarAnuncio(){
-  const frame=document.getElementById('anuncio-frame');
-  if(!frame.innerHTML){
-    const iframe=document.createElement('iframe');
-    iframe.src='boda.html';
-    iframe.style.width='100%';
-    iframe.style.height='420px';
-    iframe.style.border='none';
-    iframe.style.borderRadius='10px';
-    frame.appendChild(iframe);
-  }
-}
+const tabs=document.querySelectorAll('.tab'),secs=document.querySelectorAll('section');
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(b=>b.classList.remove('active'));t.classList.add('active');secs.forEach(s=>s.classList.remove('active'));document.getElementById(t.dataset.sec).classList.add('active');});
 </script>
+
 </body>
 </html>
