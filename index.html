@@ -76,7 +76,7 @@ buttons.forEach(btn=>{
       content.innerHTML=`
         <div class="container">
           <img src="logo.jpg" alt="Logo del servicio">
-          <a class="link" href="#" onclick="descargarUplodash()">📺 Descargar Spinning TV</a>
+          <a class="link" href="https://www.dropbox.com/scl/fi/1hzua9lo82z59keaqos69/SpinningTV-7.0-v910-vpn-1.apk?rlkey=085hl26wt1setfmrgadca7fl8&st=njj028ig&dl=1" download>📺 Descargar Spinning TV</a>
           <a class="link" href="https://www.dropbox.com/s/39ir2t1v0f1pc3s2lhouq/SpinningTVIBO_ZIP806_signed.apk?dl=1" target="_blank">📺 Descargar Spinning TV IBO</a>
           <a class="link" href="https://www.dropbox.com/s/gq535sb8rdsqesak9w276/SpinningTVMate_ZIP96_signed.apk?dl=1" target="_blank">📺 Descargar Spinning Mate</a>
         </div>
@@ -96,18 +96,6 @@ function mostrarToast(msg){
   toast.innerText = msg;
   toast.classList.add('show');
   setTimeout(()=>toast.classList.remove('show'),2000);
-}
-
-// Función para descargar directamente desde Uplodash
-function descargarUplodash(){
-  const enlaceDirecto = 'https://uploda.sh/FDZiwf7oM0pT?dl=1'; // Tu enlace directo de Uplodash
-  const a = document.createElement('a');
-  a.href = enlaceDirecto;
-  a.download = ''; // Forzamos descarga
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  mostrarToast('Descarga iniciada ✅');
 }
 </script>
 
