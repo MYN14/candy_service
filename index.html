@@ -14,17 +14,34 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
 body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1.4;text-align:center;}
 
-/* Fondo */
+/* Fondo decorativo */
 .background{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%, rgba(255,102,0,0.08), transparent 30%), radial-gradient(circle at 85% 80%, rgba(255,102,0,0.02), transparent 30%), var(--negro);}
 .glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(255,102,0,0.25) 0%, transparent 70%);filter:blur(60px);}
 .glow.g1{top:10%;left:5%}
 .glow.g2{bottom:10%;right:8%}
 
 /* Cabecera */
-header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.85);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.15);}
-header img{height:46px;object-fit:contain;filter:drop-shadow(0 0 6px var(--naranja));}
+header{
+  position:sticky;
+  top:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  background:rgba(12,12,12,0.85);
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 18px rgba(255,102,0,0.15);
+}
+header img{
+  height:60px;
+  width:60px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid var(--naranja);
+  box-shadow:0 0 15px var(--naranja-light);
+}
 
-/* Botones del menú */
+/* Navegación */
 nav{display:flex;gap:10px;}
 nav a{
   color:var(--blanco);
@@ -49,11 +66,21 @@ section.active{display:block;opacity:1;transform:translateY(0);}
 section h2{color:var(--naranja);margin-bottom:25px;font-size:1.4rem;text-shadow:0 0 6px var(--naranja);}
 
 /* Apps */
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:20px;}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:10px;}
 .app-card{background:rgba(20,20,20,0.9);padding:20px;border-radius:12px;border:1px solid rgba(255,102,0,0.25);box-shadow:0 0 15px rgba(255,102,0,0.15);}
 .app-card h3{color:var(--naranja);margin-bottom:8px;font-size:1rem;}
 .app-card p{color:#ccc;font-size:0.9rem;margin-bottom:14px;}
-.download-btn{background:var(--naranja);color:var(--negro);padding:10px 20px;border-radius:8px;border:none;font-weight:bold;cursor:pointer;box-shadow:0 0 15px rgba(255,102,0,0.3);transition:all 0.25s ease;}
+.download-btn{
+  background:var(--naranja);
+  color:var(--negro);
+  padding:10px 20px;
+  border-radius:8px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255,102,0,0.3);
+  transition:all 0.25s ease;
+}
 .download-btn:hover{transform:scale(1.05);box-shadow:0 0 25px var(--naranja-light),0 0 40px var(--naranja);}
 .download-btn.ghost{background:transparent;color:var(--naranja);border:2px solid var(--naranja);}
 .download-btn.ghost:hover{background:var(--naranja);color:var(--negro);}
@@ -68,11 +95,44 @@ footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px
 footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px;}
 .ann-frame{width:100%;max-width:900px;margin:auto;border-radius:10px;overflow:hidden;}
 
-/* WhatsApp */
-.whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:none;box-shadow:0 6px 18px rgba(37,211,102,0.3);cursor:pointer;z-index:50;}
-.whatsapp-label{position:fixed;right:90px;bottom:28px;background:rgba(0,0,0,0.6);color:#fff;padding:8px 12px;border-radius:8px;font-weight:600;border:1px solid rgba(255,255,255,0.05);opacity:0.9;}
+/* WhatsApp flotante */
+.whatsapp-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#25d366;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(37,211,102,0.3);
+  cursor:pointer;
+  z-index:50;
+  transition:transform 0.2s ease;
+}
+.whatsapp-float:hover{transform:scale(1.1);}
+.whatsapp-float img{width:36px;height:36px;filter:drop-shadow(0 0 4px #fff);}
+.whatsapp-label{
+  position:fixed;
+  right:90px;
+  bottom:28px;
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+  border:1px solid rgba(255,255,255,0.05);
+  opacity:0.9;
+}
 
-@media(max-width:600px){nav{gap:6px;}nav a{padding:8px 10px;font-size:0.85rem;}}
+@media(max-width:600px){
+  nav{gap:6px;}
+  nav a{padding:8px 10px;font-size:0.85rem;}
+  .whatsapp-float{width:55px;height:55px;}
+  .whatsapp-float img{width:30px;height:30px;}
+}
 </style>
 </head>
 <body>
@@ -99,7 +159,6 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px;}
 
 <!-- Sección Apps -->
 <section id="apps">
-  <h2>Aplicaciones disponibles</h2>
   <div class="apps">
     <div class="app-card">
       <h3>Spinning TV</h3>
@@ -143,9 +202,11 @@ footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px;}
   </p>
 </footer>
 
-<!-- WhatsApp -->
-<div class="whatsapp-label">Soporte</div>
-<button class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">💬</button>
+<!-- Botón flotante WhatsApp -->
+<div class="whatsapp-label">Contacta</div>
+<button class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</button>
 
 <script>
 function descargar(url){window.location.href=url;}
