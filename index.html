@@ -1,201 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCG Eventos 🎉</title>
-  <meta name="description" content="Humo de colores para bodas y eventos — Spinning TV y servicios. Contacto: 925 119 908" />
-  <style>
-    :root{
-      --naranja:#ff6600;
-      --negro:#0b0b0c;
-      --gris:#1a1a1a;
-      --blanco:#fff;
-    }
-    /* Baseline (fuente de sistema para máxima compatibilidad en WebView/Downloader) */
-    *{box-sizing:border-box;margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}
-    html,body{height:100%}
-    body{
-      background-color:var(--negro);
-      color:var(--blanco);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-      line-height:1.4;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1919Plus Services</title>
+<style>
+  :root{
+    --dorado:#d4af37;
+    --negro:#0a0a0a;
+    --gris:#1b1b1b;
+    --blanco:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+  body{background:var(--negro);color:var(--blanco);overflow-x:hidden;line-height:1.4;text-align:center;}
 
-    /* Fondo animado: luces/neón sutil (ligero en CPU) */
-    .background{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(circle at 15% 20%, rgba(255,102,0,0.12), transparent 30%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.03), transparent 30%), var(--negro);}
-    .neon{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(255,102,0,0.25) 0%, transparent 70%);filter:blur(60px);opacity:0.9;animation:float 12s ease-in-out infinite alternate}
-    .neon.n1{top:6%;left:6%;animation-delay:0s}
-    .neon.n2{bottom:10%;right:8%;animation-delay:3s}
-    .neon.n3{top:60%;left:40%;animation-delay:6s}
-    @keyframes float{from{transform:translateY(0) scale(1);opacity:.6}to{transform:translateY(-36px) scale(1.15);opacity:.85}}
+  /* Fondo y efectos */
+  .background{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%, rgba(212,175,55,0.1), transparent 30%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.02), transparent 30%), var(--negro);}
+  .glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);filter:blur(50px);animation:float 12s ease-in-out infinite alternate;}
+  .glow.g1{top:8%;left:5%;animation-delay:0s}
+  .glow.g2{bottom:10%;right:8%;animation-delay:3s}
+  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-40px)}}
 
-    /* Header */
-    header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.55);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(255,102,0,0.12)}
-    header img{height:46px;filter:drop-shadow(0 0 6px var(--naranja));object-fit:contain}
-    nav{display:flex;gap:16px;align-items:center}
-    nav a{color:var(--blanco);text-decoration:none;font-weight:600;font-size:0.95rem;padding:6px 8px;border-radius:6px;transition:color .18s,background .18s}
-    nav a:hover{color:var(--naranja)}
+  /* Header */
+  header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(12,12,12,0.6);backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(212,175,55,0.15)}
+  header img{height:46px;object-fit:contain;filter:drop-shadow(0 0 6px var(--dorado))}
+  nav{display:flex;gap:16px;align-items:center}
+  nav a{color:var(--blanco);text-decoration:none;font-weight:600;font-size:0.95rem;padding:6px 8px;border-radius:6px;transition:color .18s,background .18s}
+  nav a:hover{color:var(--dorado)}
 
-    /* Hero */
-    .hero{text-align:center;padding:72px 18px 42px}
-    .hero h1{font-size:2.2rem;color:var(--naranja);text-shadow:0 0 12px rgba(255,102,0,0.6);margin-bottom:10px;animation:glow 2s ease-in-out infinite alternate}
-    .hero h2{font-size:1.05rem;color:#f6f6f6;margin-top:6px}
-    .hero p.note{margin-top:12px;color:#dcdcdc;font-size:0.95rem}
-    @keyframes glow{from{text-shadow:0 0 8px rgba(255,102,0,0.45)}to{text-shadow:0 0 22px rgba(255,102,0,0.85)}}
+  section{padding:40px 16px;text-align:center;max-width:1100px;margin:0 auto}
 
-    /* Video section */
-    .video-section{max-width:900px;margin:28px auto;padding:0 16px}
-    .video-frame{border-radius:12px;overflow:hidden;background:#000;box-shadow:0 0 30px rgba(255,102,0,0.1)}
-    video{width:100%;height:auto;display:block}
+  /* Leer.html */
+  iframe.leer-frame{width:100%;height:400px;border:none;border-radius:10px;background:#111;margin-top:10px;box-shadow:0 0 20px rgba(212,175,55,0.15)}
 
-    /* Apps grid */
-    .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;max-width:1100px;margin:40px auto;padding:0 16px}
-    .app-card{background:linear-gradient(180deg, rgba(25,25,25,0.86), rgba(18,18,18,0.86));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(0,0,0,0.5);text-align:center;backdrop-filter:blur(6px)}
-    .app-card h3{color:var(--naranja);margin-bottom:8px;font-size:1.05rem}
-    .app-card p{color:#cfcfcf;font-size:0.92rem;margin-bottom:14px}
-    .download-btn{background:var(--naranja);color:var(--negro);padding:10px 18px;border-radius:8px;border:none;font-weight:700;cursor:pointer;font-size:0.98rem;box-shadow:0 6px 18px rgba(255,102,0,0.18)}
-    .download-btn:active{transform:translateY(1px)}
-    .download-btn.ghost{background:transparent;color:var(--naranja);border:1px solid rgba(255,102,0,0.18)}
+  /* Hero */
+  .hero h1{font-size:2.2rem;color:var(--dorado);text-shadow:0 0 15px rgba(212,175,55,0.6);margin-bottom:8px}
+  .hero h2{font-size:1.1rem;color:#f3f3f3;margin-top:6px}
+  .hero p{margin-top:10px;color:#ccc}
 
-    /* Socials */
-    .socials{margin:46px 0 26px;text-align:center}
-    .socials h4{color:#cfcfcf;margin-bottom:12px;font-size:0.95rem}
-    .insta-links{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
-    .insta-links a{display:flex;align-items:center;gap:8px;color:var(--white);text-decoration:none;color:#ddd;font-size:0.95rem}
-    .insta-links img{width:22px;height:22px;filter:drop-shadow(0 0 6px var(--naranja));border-radius:5px}
+  /* Apps */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:20px}
+  .app-card{background:linear-gradient(180deg, rgba(25,25,25,0.9), rgba(18,18,18,0.9));padding:20px;border-radius:12px;border:1px solid rgba(212,175,55,0.15);box-shadow:0 0 15px rgba(0,0,0,0.4)}
+  .app-card h3{color:var(--dorado);margin-bottom:8px;font-size:1.05rem}
+  .app-card p{color:#cfcfcf;font-size:0.92rem;margin-bottom:14px}
+  .download-btn{background:var(--dorado);color:var(--negro);padding:10px 18px;border-radius:8px;border:none;font-weight:700;cursor:pointer;font-size:0.98rem;box-shadow:0 6px 18px rgba(212,175,55,0.25);transition:all .25s}
+  .download-btn:hover{transform:scale(1.05)}
+  .download-btn.ghost{background:transparent;color:var(--dorado);border:1px solid rgba(212,175,55,0.3)}
 
-    /* Footer / anuncios */
-    footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px solid rgba(255,255,255,0.02);backdrop-filter:blur(6px)}
-    footer h2{color:var(--naranja);font-size:1.05rem;margin-bottom:12px}
-    .ann-frame{width:100%;max-width:980px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .ann-frame iframe{width:100%;height:420px;border:none;background:#000;display:block}
+  /* Instagram */
+  .insta-links{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:40px 0}
+  .insta-links a{display:flex;align-items:center;gap:8px;color:#ddd;text-decoration:none;font-size:0.95rem}
+  .insta-links img{width:22px;height:22px;filter:drop-shadow(0 0 6px var(--dorado));border-radius:5px}
 
-    /* Floating whatsapp */
-    .whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:none;box-shadow:0 6px 18px rgba(37,211,102,0.15);cursor:pointer;z-index:60}
-    .whatsapp-label{position:fixed;right:92px;bottom:28px;background:rgba(0,0,0,0.6);color:#fff;padding:8px 12px;border-radius:8px;font-weight:600;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(0,0,0,0.4);opacity:0.95}
+  /* Footer */
+  footer{margin-top:38px;padding:22px;background:rgba(10,10,10,0.7);border-top:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(6px);text-align:center}
+  footer h2{color:var(--dorado);font-size:1.05rem;margin-bottom:12px}
+  .ann-frame{width:100%;max-width:980px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
 
-    /* Responsive tweaks */
-    @media (max-width:900px){.ann-frame iframe{height:320px}}
-    @media (max-width:700px){header img{height:40px}.hero{padding:46px 14px 26px}.hero h1{font-size:1.6rem}.video-section{margin:16px 12px}.apps{gap:14px;padding:0 12px}.ann-frame iframe{height:240px}}
-    @media (max-width:420px){.whatsapp-label{display:none}}
-  </style>
+  /* WhatsApp */
+  .whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:none;box-shadow:0 6px 18px rgba(37,211,102,0.15);cursor:pointer;z-index:60}
+  .whatsapp-label{position:fixed;right:92px;bottom:28px;background:rgba(0,0,0,0.6);color:#fff;padding:8px 12px;border-radius:8px;font-weight:600;border:1px solid rgba(255,255,255,0.03);opacity:0.95}
+
+  @media (max-width:600px){.insta-links{gap:18px}}
+</style>
 </head>
 <body>
 
-  <!-- fondo animado -->
-  <div class="background">
-    <div class="neon n1" aria-hidden="true"></div>
-    <div class="neon n2" aria-hidden="true"></div>
-    <div class="neon n3" aria-hidden="true"></div>
-  </div>
+<div class="background">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+</div>
 
-  <!-- header -->
-  <header>
-    <img src="logo.jpg" alt="Logo DCG Eventos">
-    <nav>
-      <a href="#apps">Apps</a>
-      <a href="#video">Video</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<header>
+  <img src="logo.jpg" alt="Logo 1919Plus Services">
+  <nav>
+    <a href="#leer">¡Importante Leer!</a>
+    <a href="#apps">Apps</a>
+    <a href="#anuncios">Anuncio</a>
+  </nav>
+</header>
 
-  <!-- hero -->
-  <section class="hero" role="banner" aria-label="Hero">
-    <h1>¿Te casas en 2026?</h1>
-    <h2>💨 Nueva tendencia: <strong style="color:var(--naranja)">HUMO DE COLORES</strong></h2>
-    <p class="note">También ideal para revelaciones de sexo en embarazos 💙💗</p>
-    <p style="margin-top:12px;color:var(--naranja);font-weight:700">📞 Pide información: 925 119 908</p>
-  </section>
+<!-- leer.html -->
+<section id="leer">
+  <h2 style="color:var(--dorado);margin-bottom:10px;">📖 Información importante</h2>
+  <iframe class="leer-frame" src="leer.html" title="Información importante"></iframe>
+</section>
 
-  <!-- video -->
-  <section id="video" class="video-section" aria-label="Video promocional">
-    <div class="video-frame">
-      <video controls playsinline preload="metadata" poster="poster.jpg">
-        <source src="https://github.com/MYN14/candy_service/raw/main/VID-20251110-WA0028.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-      </video>
-    </div>
-  </section>
+<!-- Hero -->
+<section class="hero">
+  <h1>¿Te casas en 2026?</h1>
+  <h2>✨ Nueva tendencia: <strong style="color:var(--dorado)">HUMO DE COLORES</strong></h2>
+  <p>También ideal para revelaciones de sexo en embarazos 💙💗</p>
+  <p style="margin-top:12px;color:var(--dorado);font-weight:700">📞 Pide información: 925 119 908</p>
+</section>
 
-  <!-- apps -->
-  <section id="apps" class="apps" aria-label="Aplicaciones disponibles">
-    <div class="app-card" role="article" aria-label="Spinning TV">
+<!-- Apps -->
+<section id="apps">
+  <h2 style="color:var(--dorado);margin-bottom:20px;">Aplicaciones disponibles</h2>
+  <div class="apps">
+    <div class="app-card">
       <h3>Spinning TV</h3>
       <p>App con VPN integrada (recomendada)</p>
       <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/mujehrepptl1wzpspw81e/SpinningTV-7.0-v910-vpn.apk?dl=0')">Descargar</button>
     </div>
 
-    <div class="app-card" role="article" aria-label="Spinning IBO">
+    <div class="app-card">
       <h3>Spinning IBO</h3>
       <p>App con una interfaz diferente (no incluye VPN)</p>
       <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/3anok9w5g0s6879bl52zk/SpinningTVIBO_ZIP806_signed.apk?dl=0')">Descargar</button>
     </div>
 
-    <div class="app-card" role="article" aria-label="Spinning Mate">
+    <div class="app-card">
       <h3>Spinning Mate</h3>
       <p>App con interfaz más adaptada a Películas y Series (tipo Netflix)</p>
       <button class="download-btn" onclick="descargar('https://www.dropbox.com/scl/fi/c00r48nt8ysufv0dangi0/SpinningTVMate_ZIP96_signed.apk?dl=0')">Descargar</button>
     </div>
 
-    <div class="app-card" role="article" aria-label="Spinning Apple">
-      <h3>Spinning Apple</h3>
-      <p>Versión disponible para App Store (Hot Player)</p>
+    <div class="app-card">
+      <h3>Aplicación para Apple</h3>
+      <p>Disponible en App Store (Hot Player)</p>
       <button class="download-btn ghost" onclick="descargar('https://apps.apple.com/us/app/hot-player/id6695762404')">Abrir</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- socials -->
-  <section class="socials" id="contacto" aria-label="Redes sociales">
-    <h4>Síguenos en Instagram</h4>
-    <div class="insta-links" aria-hidden="false">
-      <a href="https://www.instagram.com/dcgeventos" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @dcgeventos
-      </a>
-      <a href="https://www.instagram.com/imprimepubli" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @imprimepubli
-      </a>
-    </div>
-  </section>
+<!-- Instagram -->
+<div class="insta-links">
+  <a href="https://www.instagram.com/dcgeventos" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @dcgeventos
+  </a>
+  <a href="https://www.instagram.com/imprimepubli" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> @imprimepubli
+  </a>
+</div>
 
-  <!-- footer + anuncios -->
-  <footer aria-label="Anuncios">
-    <h2>🎉 Anuncios</h2>
-    <div class="ann-frame" role="region" aria-label="Anuncio boda">
-      <iframe src="boda.html" title="Anuncio boda" loading="lazy" referrerpolicy="no-referrer"></iframe>
-    </div>
-    <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem">© 2025 DCG Eventos — Diseño moderno & energía</p>
-  </footer>
+<!-- Anuncios dinámicos -->
+<footer id="anuncios">
+  <h2 style="color:var(--dorado);margin-bottom:12px;">🎉 Anuncios</h2>
+  <div class="ann-frame" id="anuncio-frame"></div>
+  <p style="margin-top:14px;color:#bdbdbd;font-size:0.9rem">
+    © 2025 1919Plus Services | Derechos reservados
+  </p>
+</footer>
 
-  <!-- WhatsApp flotante -->
-  <div class="whatsapp-label" style="display:block">Soporte</div>
-  <button class="whatsapp-float" aria-label="Contactar por WhatsApp" onclick="window.open('https://wa.me/34603102438','_blank')">💬</button>
+<!-- WhatsApp -->
+<div class="whatsapp-label">Soporte</div>
+<button class="whatsapp-float" onclick="window.open('https://wa.me/34603102438','_blank')">💬</button>
 
-  <script>
-    // Descarga (abre enlace) + toast ligero para confirmación visual en navegadores compatibles
-    function descargar(url){
-      try {
-        // Usar location.href para Downloader / WebView
-        window.location.href = url;
-      } catch(e){
-        window.open(url, '_blank');
-      }
-    }
+<script>
+  function descargar(url){
+    try{window.location.href=url;}catch(e){window.open(url,'_blank');}
+  }
 
-    // Accessibility: smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth'});
     });
+  });
 
-    // If device is low-power / old webview, animations are lightweight and CSS-only.
-    // No external libs used to maximize compatibility with Downloader/SmartTV WebViews.
-  </script>
+  // Anuncios dinámicos según orientación
+  function cargarAnuncio() {
+    const frame = document.getElementById('anuncio-frame');
+    frame.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('frameborder','0');
+    iframe.setAttribute('title','Anuncio boda');
+    if(window.innerHeight > window.innerWidth){
+      iframe.setAttribute('src','boda_vertical.html');
+      iframe.style.height='550px';
+    } else {
+      iframe.setAttribute('src','boda.html');
+      iframe.style.height='420px';
+    }
+    iframe.style.width='100%';
+    iframe.style.borderRadius='10px';
+    frame.appendChild(iframe);
+  }
+
+  cargarAnuncio();
+  window.addEventListener('resize', cargarAnuncio);
+</script>
 
 </body>
 </html>
